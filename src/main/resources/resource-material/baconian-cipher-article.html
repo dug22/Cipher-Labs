@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind Baconian's Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<header>
+    <h1>Details Behind Baconian's Cipher</h1>
+</header>
+<body>
+<div class="article-content">
+    <h2>Brief History About the Baconian Cipher</h2>
+    <p>
+        The Baconian cipher, also known as "Bacon's cipher" is a method of steganographic message encoding, designed by
+        Francis Bacon in 1605. Steganography differs from simple encryption. Steganography conceals the presentation of
+        plaintext, rather than its overall content. Think of Bacon's cipher as a concealment cipher.
+    </p>
+
+    <h2>How Does Bacon's Cipher Work</h2>
+    <p>
+        To encode a plaintext message, each character (letters A-Z) of the plaintext are replaced with a collection of
+        characters that consists the letters A or B. Characters of the plaintext can also be replaced with a 5-bit
+        binary encoding. Down below is a table that consists of letters, and its appropriate letter code.
+    </p>
+    <div class="baconian-table-container">
+        <table border="1" align="CENTER">
+            <thead>
+            <tr>
+                <th>Letter</th>
+                <th>Letter Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>A</td>
+                <td>AAAAA</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>AAAAB</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>AAABA</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>AAABB</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>AABAA</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>AABAB</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td>AABBA</td>
+            </tr>
+            <tr>
+                <td>H</td>
+                <td>AABBB</td>
+            </tr>
+            <tr>
+                <td>I/J</td>
+                <td>ABAAA</td>
+            </tr>
+            <tr>
+                <td>K</td>
+                <td>ABAAB</td>
+            </tr>
+            <tr>
+                <td>L</td>
+                <td>ABABA</td>
+            </tr>
+            <tr>
+                <td>M</td>
+                <td>ABABB</td>
+            </tr>
+            <tr>
+                <td>N</td>
+                <td>ABBAA</td>
+            </tr>
+            <tr>
+                <td>O</td>
+                <td>ABBAB</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>ABBBA</td>
+            </tr>
+            <tr>
+                <td>Q</td>
+                <td>ABBBB</td>
+            </tr>
+            <tr>
+                <td>R</td>
+                <td>BAAAA</td>
+            </tr>
+            <tr>
+                <td>S</td>
+                <td>BAAAB</td>
+            </tr>
+            <tr>
+                <td>T</td>
+                <td>BAABA</td>
+            </tr>
+            <tr>
+                <td>U/V</td>
+                <td>BAABB</td>
+            </tr>
+            <tr>
+                <td>W</td>
+                <td>BABAA</td>
+            </tr>
+            <tr>
+                <td>X</td>
+                <td>BABAB</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>BABBA</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>BABBB</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>Encoding A Message Using Bacon's Cipher</h2>
+    <p>
+        Encoding a message using Bacon's cipher is pretty self-explanatory. For this example, we'll encode the message
+        "SECRET" using Bacon's cipher. To encode this message using Bacon's cipher, we must follow these rules:
+    </p>
+    <ol>
+        <li>Break up each character.</li>
+        <li>Refer to the translation table above to see what each letter's letter code is.</li>
+        <li>After translating each letter to its appropriate letter code, or binary representation, put it all
+            together
+        </li>
+    </ol>
+    <p>
+        Example down below following the rules above:
+    </p>
+    <ul>
+        <li>SECRET</li>
+        <li>S,E,C,R,E,T</li>
+        <ol>
+            <li>S = BAAAB</li>
+            <li>E = AABAA</li>
+            <li>C = AAABA</li>
+            <li>R = BAAAA</li>
+            <li>E = AABAA</li>
+            <li>T = BAABA</li>
+        </ol>
+        <li>Final Result: BAAABAABAAAAABABAAAAAABAABAABA</li>
+    </ul>
+
+    <h2>Decoding A Message Using Bacon's Cipher</h2>
+    <p>
+        Decoding a message using Bacon's cipher follows the same practice, except you're doing the opposite by
+        translating each encoded chunk back to its appropriate letter.
+    </p>
+    <ol>
+        <li>Break up each encoded chunk by 5.</li>
+        <li>Refer to the translation table above to see what each letter code's letter is.</li>
+        <li>After translating each letter code to its appropriate letter, put it all together</li>
+    </ol>
+    <p>
+        Example down below following the rules above:
+    </p>
+    <ol>
+        <li>BAAAB AABAA AAABA BAAAA AABAA BAABA</li>
+        <ol>
+            <li>BAAAB = S</li>
+            <li>AABAA = E</li>
+            <li>AAABA = C</li>
+            <li>BAAAA = R</li>
+            <li>AABAA = E</li>
+            <li>BAABA = T</li>
+        </ol>
+        <li>Final Result: SECRET</li>
+    </ol>
+    <h2>Hiding Secret Messages In Sentences</h2>
+    <p>
+        We went over the basic encoding/decoding practices of the Bacon cipher, but we never went over the
+        steganographic concept of it. Francis Bacon was known for concealing messages by using different typefaces embedded within ordinary text.
+        Let's demonstrate this technique using an example. For this example, we'll encode the word "HI" in the sentence "HELLO WORLD". Letters that are bolded
+        resemble the letter "A", while italicized text resembles the letter "B".
+    </p>
+    <ol>
+        <li>Message: <strong>HE</strong><i>LLO</i><strong>W</strong><i>O</i><strong>RLD</strong></li>
+        <li>Bacon's Encoding: AABBBABAAA</li>
+        <li>Hidden Word: HI</li>
+    </ol>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em;">
+            Gallup, E. W. (1901). <i>The Bi-literal Cypher of Sir Francis Bacon</i>. Howard.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Gleason, N. (1987). <i>Fun with Codes and Ciphers Workbook</i>. Dover Publications.
+        </li>
+    </ul>
+</div>
+</body>
+</html>

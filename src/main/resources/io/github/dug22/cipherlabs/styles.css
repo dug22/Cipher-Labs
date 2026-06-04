@@ -1,0 +1,175 @@
+.grid-pane {
+    -fx-background-color: white;
+}
+
+
+.navigation-box{
+    -fx-background-color: #1a1c2c;
+}
+
+.home-page-navigation-label {
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+}
+
+.home-page-navigation-label-hover {
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-background-color: #021329;
+    -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.3), 15, 0, 0, 0);
+}
+
+.card-layout{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+}
+
+.card-layout-hover {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-background-color: #f8f9fa;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.resource-lookup-label {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.resources-side-panel-collapsible-button {
+    -fx-background-color: #00337a;
+    -fx-padding: 10 5;
+    -fx-background-radius: 0 5 5 0;
+}
+
+.menu-bar {
+    -fx-background-color: #333333;
+    -fx-border-color: #444444;
+}
+
+.menu-bar .menu {
+    -fx-background-color: transparent;
+}
+
+.menu-bar .menu:hover {
+    -fx-background-color: #555555;
+}
+
+.menu .label, .menu-item .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.context-menu {
+    -fx-background-color: #222222;
+}
+
+.menu-item:focused {
+    -fx-background-color: #0078d7;
+}
+
+.settings-scroll-pane {
+    -fx-background-color: white;
+
+}
+
+.settings-vbox-Container {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);
+    -fx-padding: 50;
+}
+
+.setting-header, .setting-sub-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a3f54;
+    -fx-alignment: center;
+}
+
+.setting-sub-header {
+    -fx-font-size: 18px;
+}
+
+.save-settings-button, .search-settings-button, .analyze-button {
+    -fx-background-color: #2a3f54;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12 40 12 40;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.setting-row-widget {
+    -fx-background-color: #fcfcfc;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 0 10 0 10;
+}
+
+.setting-row-label {
+     -fx-font-weight: bold;
+     -fx-text-fill: #000;
+     -fx-font-size: 12px;
+}
+
+.metric-card {
+    -fx-background-color: #161b22;
+    -fx-border-color: #30363d;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.chart {
+    -fx-background-color: #0d1117;
+}
+
+.chart-plot-background {
+    -fx-background-color: #0d1117;
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.chart-bar {
+    -fx-bar-fill: white;
+}
+
+.chart-title {
+    -fx-text-fill: #ffffff;
+}
+
+.axis-label {
+    -fx-text-fill: #ffffff;
+}
+
+.axis {
+    -fx-tick-label-fill: #ffffff;
+}
+
+.document-information-side-panel {
+     -fx-background-color: #0d1117;
+     -fx-background: #0d1117;
+     -fx-border-color: #21262d;
+     -fx-border-width: 0 0 0 1;
+     -fx-viewport-background: #0d1117;
+}
+
+

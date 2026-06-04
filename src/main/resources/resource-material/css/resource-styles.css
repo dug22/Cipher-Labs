@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f1f3f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #34495e;
+    color: #fff;
+    text-align: center;
+    padding: 20px 10px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.changelog-container,
+.article-content {
+    max-width: 75%;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.article-content h2,
+.article-content h3 {
+    text-align: center;
+    color: #34495e;
+    font-size: 2em;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.article-content h3 {
+    font-size: 1.4em;
+}
+
+.article-content p {
+    font-size: 1.2em;
+    margin: 1rem 0;
+    text-align: justify;
+}
+
+.baconian-table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.article-content ul li,
+.article-content ol li {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 1.1em;
+}
+
+.table, th,td {
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.changelog-entry h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.changelog-entry ul li,
+.changelog-entry ol li {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 1.1em;
+    text-align: center;
+    list-style-position: inside;
+}
+
+.changelog-container h1{
+    text-align: center;
+
+}
+
+
+.dropdown {
+  display: inline-flex;
+   position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropbtn {
+  background-color: grey;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+}
+
+.dropdown-content {
+  display: none;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: blue;
+}

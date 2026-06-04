@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Caesar Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Caesar Cipher</h1>
+</header>
+
+
+<div class="article-content">
+    <h2>What is the Caesar Cipher?</h2>
+    <p>
+        A Caesar cipher is a simple monoalphabetic substitution cipher, where each character within the given
+        plaintext is shifted a specific number of times, which is known as the key. For example, with a positive shift
+        of 3, the letter "C" would become "F". This method of this cipher was named after Julius Caesar, in his honor.
+    </p>
+
+    <h2>The Encryption Process</h2>
+    <p>The encryption process of Caesar's Cipher involves substituting each character to the right, within the plaintext with
+    a given number (known as the key). For example, let's assume Bob wished to send Alice the following message
+    "THIS IS A SECRET", with a shift of 3. T would become W, H would become K, I would become L, and so on. The final
+    result would be:</p>
+    <p><center><b>Plaintext:</b> THIS IS A SECRET</center></p>
+    <p><center><b>Ciphertext:</b> WKLV LV D VHFUHW</center></p>
+    <p>
+        If you need a visual representation to help you out with this, you can write a 2x26 table containing the plaintext alphabet in chronological order, followed by the ciphertext letters with a shift of 3. Do note that these tables will
+        always be different depending on your shift's value.
+    </p>
+    <table border="1"  style="border-collapse: collapse; width: 100%; text-align: center;">
+        <tr>
+            <td class="label">Plaintext</td>
+            <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td>
+        </tr>
+        <tr>
+            <td class="label">Cipher (Shift 3)</td>
+            <td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td>
+        </tr>
+    </table>
+    <p>The encryption can be represented using modular arithmetic, by mapping the appropriate letters into numbers, matching the scheme, A=0, B=1, ..., Z=25.
+        The formula is as followed: <br><center><b>E(x) = (x + n) mod 26</b></center>
+    </p>
+    <ul>
+        <li>The value <b>x</b> resembles the plaintexts character position within the alphabet, ranging from 0-25.</li>
+        <li>The value <b>n</b> resembles the shift's value (your key).</li>
+        <li><b>"mod 26"</b> resembles the modulo operation, and it ensures the shift "wraps around" to the beginning of the alphabet if it passes Z.</li>
+    </ul>
+
+    <h2>The Decryption Process</h2>
+    <p>
+        The decryption process of the Caesar cipher follows the same idea as the encryption process, except you shift each character in the ciphertext backwards instead. Let's assume Alice wished to read Bob's following message
+        "WKLV LV D VHFUHW" in plaintext. She would take the following ciphertext with its key, and shift the letters back 3. W would become T, K would become H, L would become I, and so on. The final
+        result would be:
+    </p>
+    <p><center><b>Ciphertext:</b> WKLV LV D VHFUHW</center></p>
+    <p><center><b>Plaintext:</b> THIS IS A SECRET</center></p>
+
+    <p>
+        If you need a visual representation to help you out with this, you can write a 2x26 table containing the ciphertext letters with a shift of 3, followed by the plaintext alphabet in chronological order.
+    </p>
+    <table border="1"  style="border-collapse: collapse; width: 100%; text-align: center;">
+        <tr>
+            <td class="label">Cipher (Shift 3)</td>
+            <td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td>
+        </tr>
+        <tr>
+            <td class="label">Plaintext</td>
+            <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td>
+        </tr>
+    </table>
+    <p>The decryption can be represented using modular arithmetic, by mapping the appropriate letters into numbers, matching the scheme, A=0, B=1, ..., Z=25.
+        The formula is as followed: <br><center><b>D(x) = (x - n) mod 26</b></center>
+    </p>
+    <ul>
+        <li>The value <b>x</b> resembles the plaintexts character position within the alphabet, ranging from 0-25.</li>
+        <li>The value <b>n</b> resembles the shift's value (your key).</li>
+        <li><b>"mod 26"</b> resembles the modulo operation, and it ensures the shift "wraps around" to the beginning of the alphabet if it passes Z.</li>
+    </ul>
+    <h2>Security Implications</h2>
+    <p>
+        Caesar's cipher has many security implications, making it a weak cipher. There are 26 possible keys the user could use to attempt to crack this cipher.
+        A simple brute force attack of 26 possible key shifts can easily crack a message that was encrypted using the Caesar Cipher, in mere seconds.
+    </p>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Holden, J. (2017). <i>The mathematics of secrets: Cryptography from Caesar ciphers to digital encryption</i>. Princeton University Press.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em;">
+            Young, A. L. (2006). <i>Mathematical ciphers: From Caesar to RSA</i>. Mathematical Association of America.
+        </li>
+    </ul>
+</div>
+</body>
+</html>

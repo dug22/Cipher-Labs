@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Cipher-Labs</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Cipher Labs Documentation</h1>
+</header>
+<div class="article-content">
+    <h2>About Cipher Labs</h2>
+    <img src="../resource-material/imgs/home-page.png"
+         style="margin-left: auto; margin-right: auto; width: 100%; height: 50%; ">
+    <p> Cipher Labs is an open-source educational cipher program designed to teach students and cybersecurity
+        researchers the fundamentals of modern cryptology and cryptanalysis. Cipher Labs is a desktop
+        application equipped with three main modules: a custom workstation module that allows users to experiment with
+        classical and modern ciphers, and visualize how they work, a resources module that includes documentation on
+        what Cipher Labs is and how it works, along with educational material on how the cipher algorithms that users
+        can experiment with on the platform operate and work, plus Lock Spot’s module which was a separate command line
+        tool, but has now been integrated into Cipher Labs. If you’re not familiar with what LockSpot is, LockSpot is a
+        machine learning tool that allows users to input ciphertext and receive a conducted analysis of the cipher
+        algorithm most likely used to encrypt it, along with the cipher category it most likely belongs to. Cipher Labs
+        is still in beta, but more features are on the way, including additional cipher algorithms to explore, a
+        cryptanalysis option to examine the security of specific ciphers, expanded Lock Spot model architectures for
+        testing, and more educational resources on cryptography.
+    </p>
+
+    <h2>Cipher Labs Workstation Module</h2>
+    <p>
+        To access Cipher Labs workstation module, click on the "Load Document" label from either the top or bottom of
+        the application. From there, Cipher Labs will ask you to choose a text document you wish to experiment with.
+        Once you select the appropriate text document, you will come across a screen like this:
+    </p>
+    <img src="../resource-material/imgs/workstation-example.png"
+         style="margin-left: auto; margin-right: auto; width: 100%; height: 50%; ">
+    <p>
+        Cipher Labs workstation module comes equipped with a menu bar of options, a text area for the text you wish to
+        experiment with, and side panel showcasing the information about the document you are working with.
+    </p>
+    <h3>Workstation Module's Menu Items and Their Functionalities</h3>
+    <ol>
+        <li><strong>File Tab Menu Items</strong>
+            <ul>
+                <li><strong>Home:</strong> will take you back to Cipher Lab's default home page.</li>
+                <li><strong>Lock Spot:</strong> will take you to Lock Spot's module.</li>
+                <li><strong>Save:</strong> will save the active tab you're working with</li>
+                <li><strong>Close:</strong> will safely close the application</li>
+            </ul>
+        </li>
+        <li><strong>Encrypt/Decrypt Menu Tab Items</strong>
+            <ul>
+                <li><strong>Symmetric (Classic)</strong>: will allow you to access classical symmetric ciphers to
+                    experiment with, and
+                    that includes:
+                    <ul>
+                        <li>Caesar/ROT-13</li>
+                        <li>Vigenère</li>
+                        <li>Playfair</li>
+                        <li>Enigma</li>
+                    </ul>
+                </li>
+                <li><strong>Steganography Classic</strong>: will allow to you access classic steganographic ciphers to
+                    experiment with, and that includes:
+                    <ul>
+                        <li>Baconian or Bacon's Cipher</li>
+                    </ul>
+                </li>
+                <li><strong>Asymmetric</strong>: will allow you to access asymmetric cryptosystems to experiment with,
+                    and
+                    that includes:
+                    <ul>
+                        <li>Textbook RSA</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <p style="text-align: center;">Note that anytime you access any encrypt/decrypt menu item, a form for the
+            appropriate algorithm will appear, and allow you to encrypt or decrypt given text with the appropriate
+            algorithm. So, say if I clicked on the Caesar/ROT-13 menu item, it will open a form like this.
+        </p>
+        <img src="../resource-material/imgs/caesar-form.png"
+             style="margin-left: auto; margin-right: auto; auto-width: 50%; display: block;" border="2">
+        <p style="text-align: center;">After providing an appropriate number key between 1 and 25, and clicking either
+            the "Encrypt" or "Decrypt" button, a new tabbed result will appear.</p>
+        <img src="../resource-material/imgs/encrypted-result-tab-result.png"
+             style="margin-left: auto; margin-right: auto; width: 100%;" border="2">
+        <p style="text-align: center;">
+            Make sure to be focused on the selected tab at the top, to appropriately encrypt or decrypt text.
+        </p>
+        <li><strong>Help Tab Menu Items</strong>
+            <ul>
+                <li><strong>Resources</strong> will redirect you to Cipher Lab's resource page.</li>
+                <li><strong>GitHub</strong> will take you to Cipher Lab's GitHub page.</li>
+            </ul>
+        </li>
+        <p>In later updates, the Cipher Labs workstation module will contain newer features, such as more cipher
+            algorithms
+            to experiment with and cryptanalysis tools to exploit cipher vulnerabilities.</p>
+    </ol>
+
+    <h2>Cipher Labs Lock Spot Module</h2>
+    <p>
+        Lock Spot’s small models were trained on 50,000 unique records of ciphertext, which is equivalent to millions of
+        characters of ciphertext. If you’re interested in the qualitative results of each model’s performance, please
+        have a
+        look at the figure below:
+    </p>
+    <table align="center" border="1" style="text-align: center;">
+        <tr>
+            <th>Model Name</th>
+            <th>Accuracy in % of Identifying the Given Cipher Type</th>
+            <th>Accuracy in % of Identifying the Given Cipher Algorithm</th>
+            <th>Average Accuracy in %</th>
+        </tr>
+        <tr>
+            <td>Lock_Spot_Small_FFN_Model</td>
+            <td>99.18</td>
+            <td>87.57</td>
+            <td>93.375</td>
+        </tr>
+        <tr>
+            <td>Lock_Spot_Small_Logistic_Regression_Model</td>
+            <td>95.76</td>
+            <td>73.77</td>
+            <td>84.765</td>
+        </tr>
+    </table>
+    <p>
+        Lock Spot's small random forest model has been excluded due to the large size of its parameter file. As a
+        result, a
+        logistic regression model was trained on its behalf and has been integrated into Cipher Labs.
+        Small model architectures, were trained on identifying 15 initial classical cipher algorithms, which are:
+    </p>
+    <ol>
+        <li>ADFGVX Cipher</li>
+        <li>Affine Cipher</li>
+        <li>AMSCO Cipher</li>
+        <li>Atbash Cipher</li>
+        <li>Autokey Cipher</li>
+        <li>Baconian Cipher</li>
+        <li>Beaufort Cipher</li>
+        <li>Bifid Cipher</li>
+        <li>Caesar Cipher</li>
+        <li>Gronsfeld Cipher</li>
+        <li>Playfair Cipher</li>
+        <li>Polybius Cipher</li>
+        <li>Porta Cipher</li>
+        <li>Railfence Cipher</li>
+        <li>Vigenère Cipher</li>
+    </ol>
+    <p>
+        Large models are in the works, but these large models are planned to be trained on identifying
+        29 classical cipher algorithms, and trained on 160,000 unique records of ciphertext.
+    </p>
+    <ol>
+        <li>ADFGVX Cipher</li>
+        <li>Affine Cipher</li>
+        <li>Alberti Cipher</li>
+        <li>AMSCO Cipher</li>
+        <li>Atbash Cipher</li>
+        <li>Autokey Cipher</li>
+        <li>Baconian Cipher</li>
+        <li>Bazeries</li>
+        <li>Beaufort Cipher</li>
+        <li>Bifid Cipher</li>
+        <li>Cadenus</li>
+        <li>Caesar Cipher</li>
+        <li>Columnar</li>
+        <li>Grandpré Cipher</li>
+        <li>Gronsfeld Cipher</li>
+        <li>Hill Cipher</li>
+        <li>Myszkowski Cipher</li>
+        <li>Nihilist Substitution Cipher</li>
+        <li>Nihilist Transposition Cipher</li>
+        <li>Playfair Cipher</li>
+        <li>Polybius Cipher</li>
+        <li>Porta Cipher</li>
+        <li>Railfence Cipher</li>
+        <li>Route Cipher</li>
+        <li>Running Key Cipher</li>
+        <li>Trifid Cipher</li>
+        <li>Trithemius Cipher</li>
+        <li>Two Square Cipher</li>
+        <li>Vigenère Cipher</li>
+    </ol>
+    <h2>Cipher Labs Resources Module</h2>
+    <p>
+        The Cipher Labs resource module features documentation on how Cipher Labs operates, along with comprehensive
+        articles detailing the history and procedures of how every classical and modern cipher works. These articles
+        serve as a foundational guide to help you learn and understand the core concepts about Cipher Labs and how every
+        available cipher on our platform works. Use this archive extensively to help you learn and build up your
+        knowledge in cryptography, while getting hands-on experience in the field.
+    </p>
+    <h2>Staying Updated</h2>
+    <p style="text-align: center;">
+        To stay updated, keep an eye on Cipher Labs <a
+            href="https://github.com/dug22/Cipher-Labs/releases">GitHub releases page</a>. New versions
+        of Cipher Labs can be found there.
+    </p>
+</div>
+</body>
+</html>

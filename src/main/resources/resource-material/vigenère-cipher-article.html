@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Vigenère Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Vigenère Cipher</h1>
+</header>
+<div class="article-content">
+    <h2>Brief History About the Vigenère Cipher?</h2>
+    <p>The Vigenère cipher is a simple classic poly-alphabetic substitution cipher, named after Blaise de Vigenère,
+        although it was created by Italian cryptographer Giovan Battista Bellaso in his 1553 book "La cifra del Sig.
+        Giovan Battista Bellaso. Throughout out history, Bellaso's work was incorrectly attributed to Vigenère, due to
+        Vigenère's published work on the autokey cipher in his 1586 book "Traictè des chiffres ou secrètes manières
+        descrire".
+    </p>
+
+    <h2>How Does Vigenère's Cipher Work</h2>
+    <p>
+        The Vigenère cipher encrypts a message by encoding each letter in the plaintext with a different Caesar cipher,
+        whose shift value is determined by the corresponding letter of the chosen key or keyword.
+        To encrypt a plaintext message, you would first need to write out your plaintext message, along with the
+        keyword's letters above the plaintext message. If the keyword is shorter than the plaintext, you would
+        repeat the keyword until the very end of the plaintext message. There are two rules your keyword must follow:
+    </p>
+    <ol>
+        <li>Your keyword cannot be longer than your plaintext.</li>
+        <li>Your keyword must be less than or equal in length to the plaintext message.
+            <ul>
+                <li>If your keyword is the same length as your plaintext message, this would be considered a one-time
+                    pad (theoretically seen as an unbreakable cipher).
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <p>
+        After writing down the plaintext message and keyword in the right format, use the tabula recta to look up the
+        ciphertext letters or use the algebraic equation.
+    </p>
+
+    <h2>Encrypting Using The Tabula Recta </h2>
+    <figure style="align: CENTER; text-align: center; font-size: 12px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vigen%C3%A8re_square_shading.svg/250px-Vigen%C3%A8re_square_shading.svg.png">
+        <figcaption>26x26 Tabular recta</figcaption>
+    </figure>
+    <p>
+        For a visual way to encrypt or decrypt text, a table of alphabets can be used, also known as the tabula recta.
+        The tabula recta is a 26x26 matrix, where the alphabet is written out 26 times in different rows, with each
+        alphabet shifted cyclically to the left. Let's say we wish to send the message "SECRET" with the key "KEY".
+        First you would draw out a table with the message at the bottom, and the key at the top.
+    </p>
+    <table align="CENTER">
+        <tr>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+        </tr>
+        <tr>
+            <td>S</td>
+            <td>E</td>
+            <td>C</td>
+            <td>R</td>
+            <td>E</td>
+            <td>T</td>
+        </tr>
+    </table>
+
+    <p>
+        By using the tabular recta, in order to encrypt the first letter of the plaintext, you'd go to row "K", column
+        "S". "C" would be your first cipher letter. In order to encrypt the second letter of your plain text,
+        you would go to row "E", column "E". The letter "I" would be your second cipher letter. After continuing the
+        same process,
+        your ciphertext result would be "CIABIR". Here is a visual representation of the tabula recta with the
+        appropriate cipher letters highlighted within the tabula recta.
+    </p>
+    <figure style="align: CENTER; text-align: center; font-size: 12px;">
+        <img width="500" height="600" src="../resource-material/imgs/tabula-recta-encryption-example.png">
+        <figcaption>Tabula recta encrypted result</figcaption>
+    </figure>
+    <h2>Decrypting Using The Tabula Recta</h2>
+    <p>
+        The decryption process using the tabula recta follows the same principle of encryption. To decrypt the first
+        letter of the ciphertext "CIABIR", go to the row for the key letter "K", and find the ciphertext letter "C"
+        within. The row
+        in which "C" aligns with column S. The letter “S” would become our first plaintext letter. Repeat this process,
+        and you'll end up with the message "SECRET".
+    </p>
+    <figure style="align: CENTER; text-align: center; font-size: 12px;">
+        <img width="500" height="600" src="../resource-material/imgs/tabula-recta-decryption-example.png">
+        <figcaption>Tabula recta first letter decrypted example</figcaption>
+    </figure>
+
+    <h2>Encrypting Using The Algebraic Expression</h2>
+    <p>
+        If you convert the English alphabet letters A-Z into numerical values 0-25 (based on their position in the
+        alphabet), the Vigenère cipher can be expressed algebraically.
+        The algebraic formula can be written out like this:<br></p>
+    <ul>
+        <li><strong>C<sub>i</sub> = (P<sub>i</sub> + K<sub>i</sub>) mod 26</strong></li>
+        <ul>
+            <li><strong>C</strong> is the cipher text</li>
+            <li><strong>P</strong> is the plaintext message</li>
+            <li><strong>K</strong> is the key</li>
+            <li><strong><sub>i</sub></strong> equates to the letter's index</li>
+            <li><strong>mod 26</strong> is modulo 26</li>
+        </ul>
+    </ul>
+    <p>
+        Before jumping into encryption, it's best to create a 2x26 table. In the top row, write the numbers 0-25. On the
+        bottom row, write the letters A-Z. This can be used as a reference as to what each letter's index is in the
+        alphabet
+    </p>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+            <td>J</td>
+            <td>K</td>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+
+    <p>
+        We'll be using our example from above. Our plaintext message is SECRET and our key is KEY. Use the layout we
+        used before.
+    </p>
+    <table align="CENTER">
+        <tr>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+        </tr>
+        <tr>
+            <td>S</td>
+            <td>E</td>
+            <td>C</td>
+            <td>R</td>
+            <td>E</td>
+            <td>T</td>
+        </tr>
+    </table>
+
+    <p>
+        In order to encrypt the letter "S" from our plaintext, we must find the index for "S" and "K". The index for "S
+        " is 18, and the index for "K" is 10. Plug those numbers into the formula.
+    </p>
+    <ul>
+        <li><strong>C<sub>i</sub> = (P<sub>i</sub> + K<sub>i</sub>) mod 26</strong></li>
+        <li><strong>C = (18 + 10) mod 26</strong></li>
+        <li><strong>C = (28) mod 26</strong></li>
+        <li><strong>C = 2</strong></li>
+        <li><strong>C = C</strong></li>
+    </ul>
+    <p>The letter "C" is our first ciphertext character. You would continue this process until the very end. Our final
+        ciphertext message would be "CIABIR".</p>
+    <h2>Decrypting Using The Algebraic Expression</h2>
+    <p>
+        The decryption process follows the same principle, but the formula for decryption is:
+    </p>
+    <ul>
+        <li><strong>P<sub>i</sub> = (C<sub>i</sub> - K<sub>i</sub>) mod 26</strong></li>
+        <ul>
+            <li><strong>P</strong> is the plaintext message</li>
+            <li><strong>C</strong> is the cipher text</li>
+            <li><strong>K</strong> is the key</li>
+            <li><strong><sub>i</sub></strong> equates to the letter's index</li>
+            <li><strong>mod 26</strong> is modulo 26</li>
+        </ul>
+    </ul>
+    <p>
+        Remember to write out your message and key, like we did above, and refer to the index table above.
+    </p>
+    <table align="CENTER">
+        <tr>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+            <td>K</td>
+            <td>E</td>
+            <td>Y</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>I</td>
+            <td>A</td>
+            <td>B</td>
+            <td>I</td>
+            <td>R</td>
+        </tr>
+    </table>
+
+    <p>
+        In order to decrypt the letter "C" from our cipher, we must find the index for "C" and "K". The index for "C" is
+        2, and the index for "K" is 10. Plug those numbers into the formula.
+    </p>
+    <ul>
+        <li><strong>P<sub>i</sub> = (C<sub>i</sub> - K<sub>i</sub>) mod 26</strong></li>
+        <li><strong>P = (2 - 10) mod 26</strong></li>
+        <li><strong>P = (-8) mod 26</strong></li>
+        <li><strong>P = 18</strong></li>
+        <li><strong>P = S</strong></li>
+    </ul>
+    <p>The letter "S" is our first plaintext character. You would continue this process until the very end. Our final
+        plaintext message would result in "SECRET".</p>
+    <h2>Security Implications</h2>
+    <p>Vigenère's cipher was unbreakable for about 300 years, but cryptanalysts have proved the Vigenère cipher to be
+        breakable. Kasiski's Test (published by German cryptologist Friedrich Wilhelm Kasiski in 1863)
+        focused on the analysis of repeated fragments in the cipher, which can give hints as to the length of the key
+        used. It was believed that Charles Babbage came up with this concept beforehand, but he never published
+        anything about it. Friedman's Test is another cryptanalysis method that is used to calculate the index of coincidence of a
+        ciphertext. The index of coincidence helps to reveal whether the ciphertext was encrypted with a monoalphabetic
+        or polyalphabetic cipher, along with retrieving the possible key length. There are other heuristics out there that
+        can break a Vigenère cipher like hill climbing, etc.
+    </p>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Christensen, C. (2019). <i>Section 15: William Friedman, index of coincidence</i>. Northern Kentucky University.
+            https://websites.nku.edu/~christensen/section%2015%20william%20friedman%20index%20of%20coincidence.pdf
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em;">
+            Klima, R. E., Sigmon, N. (2018). <i>Cryptology: Classical and modern</i>. CRC Press.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em;">
+            Igarashi, Y., Altman, T., Funada, M., & Kamiyama, B. (2014). <i>Computing: A historical and technical perspective</i>. CRC Press.
+        </li>
+    </ul>
+</div>
+</body>
+</html>

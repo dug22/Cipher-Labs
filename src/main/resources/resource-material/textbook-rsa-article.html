@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind Textbook RSA (Rivest-Shamir-Adleman)</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind RSA (Rivest-Shamir-Adleman)</h1>
+</header>
+<div class="article-content">
+    <h2>What is RSA?</h2>
+    <p>
+        RSA, short for Rivest-Shamir-Adleman, is an asymmetric public key encryption and decryption scheme
+        that is used to transmit data privately between two parties. This approach differs
+        from symmetric cryptography, where one key is used to encrypt and decrypt a message, whereas RSA uses two
+        keys (a public key for encryption and a private key for decryption), which allows for secure communication
+        between two parties without needing to share an encryption key beforehand. In the mid-1970s, the concept of
+        asymmetric cryptography was proposed by Merkle, Diffie, and Hellman, which allowed parties to exchange public
+        keys. RSA followed this idea and was invented by Rivest, Shamir, and Adleman in 1977. Beyond digital signatures
+        and authentication, RSA can found be in platforms that deal with secure file sharing, secure email
+        communications, etc.
+    </p>
+
+    <h2>The Run-down of How Textbook RSA Operates</h2>
+
+    <h3>Quick Overview</h3>
+    <p>
+        This article will only focus on textbook RSA. The term "textbook RSA" just gives you the basic math run-down of
+        how RSA operates, and Cipher-Labs RSA module follows the principles of textbook RSA for educational purposes
+        only. Textbook RSA should never be used in the real world. RSA consists of three general steps: generating keys,
+        encrypting messages, and decrypting messages.
+    </p>
+
+    <h3>Scenario</h3>
+    <p>
+        Now let's assume Bob wished to send the message "CAT" to Alice. To accomplish this task, the three major steps
+        of RSA must be fulfilled.
+    </p>
+
+    <h3>Key Generation</h3>
+    <p>
+        The key generation process follows these given steps.
+    </p>
+    <ol>
+        <li>The first step involves coming up with two large random primes, and these values are known as p and q. Never
+            share the values of p and q with anybody! In the real world, p and q should be so large that they should be
+            impossible to factor, like 2<sup>1023</sup> or 2<sup>1024</sup> which equates to a 2048-bit length key.
+            For this example, <strong>p</strong> will be 8009, and<strong>q</strong> will be 8011.
+        </li>
+        <li>
+            Next step involves computing <strong>N</strong>. <strong>N</strong> is found by finding the product of
+            <strong>p</strong> and <strong>q</strong>.
+            <strong>N</strong> is used as the modulus for public and private keys.
+            <ul>
+                <li><strong>N</strong> = (<strong>p</strong> * <strong>q</strong>)</li>
+                <li><strong>N</strong> = (8009*8011)</li>
+                <li><strong>N</strong> = 64,160,099</li>
+            </ul>
+        </li>
+        <li>
+            Compute phi, or Euler's totient of <strong>N</strong> <strong>(&phi;(N))</strong>. <strong>phi</strong> can
+            be found using
+            the following formula (<strong>p</strong>-1) * (<strong>q</strong> - 1). Putting it all together it would
+            look like this:
+            <ul>
+                <li><strong>phi</strong> = (<strong>p</strong>-1) * (<strong>q</strong> - 1)</li>
+                <li><strong>phi</strong> = (8009-1) * (8011-1)</li>
+                <li><strong>phi</strong> = 64,144,080</li>
+            </ul>
+        </li>
+        <li>
+            Choose an appropriate integer value for <strong>e</strong>. The letter <strong>e</strong> is known as the
+            public exponent. Before assigning
+            <strong>e</strong> a value, two rules must be met. <strong>e</strong> must be greater
+            than one, and coprime to <strong>phi</strong> or <strong>1 < e < &phi;(N)</strong>.
+            In this case <strong>e</strong> will be assigned the value <strong>17</strong>.
+        </li>
+        <li>
+            Determine your private key by finding <strong>d</strong> as <strong>d</strong> =
+            <strong>e</strong><sup>-1</sup> (mod(<strong>&phi;(N)</strong>).
+            <strong>d</strong> is the modular multiplicative inverse of <strong>e</strong> modulo
+            <strong>&phi;(N)</strong>. The extended Euclidean algorithm can be used to find d, but since we are working
+            with smaller numbers and to keep things simple, we'll use a multiplier known as <strong>k</strong>.
+            First create a four column table, where column 1 contains <strong>k</strong>, column 2 contains <strong>phi*k</strong>,
+            column 3 contains <strong>(phi * k) + 1</strong>, and column 4 will contain <strong>((phi * k) +
+            1)/e</strong>. Until we answer the question, if <strong>((phi*k) + 1) / e</strong> results in a whole number,
+            that'll conclude what our private key is. Make sure to increment k by 1 in each new row.
+        </li>
+        <table align="CENTER" border="1">
+            <tr align="CENTER">
+                <td><strong>k Value</strong></td>
+                <td><strong>phi * k</strong></td>
+                <td><strong>(phi * k) + 1</strong></td>
+                <td><strong>((phi * k) + 1) / e</strong></td>
+            </tr>
+            <tr align="CENTER">
+                <td>1</td>
+                <td>64,144,080</td>
+                <td>64,144,081</td>
+                <td>3,773,181.235</td>
+            </tr>
+
+            <tr align="CENTER">
+                <td>2</td>
+                <td>128,288,160</td>
+                <td>128,288,161</td>
+                <td>7,546,362.412</td>
+            </tr>
+
+            <tr align="CENTER">
+                <td>3</td>
+                <td>192,432,240</td>
+                <td>192,432,241</td>
+                <td>11,319,543.59</td>
+            </tr>
+
+            <tr align="CENTER">
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+
+            <tr align="CENTER">
+                <td>11</td>
+                <td>705,584,880</td>
+                <td>705,584,881</td>
+                <td>41,504,993</td>
+            </tr>
+        </table>
+        <li>Our private key is 41,504,993 since it's a whole number. To verify if d's value is correct simply just use
+            this formula:
+            <ul>
+                <li><strong>(e*d) - (k*phi) = 1</strong></li>
+                <li><strong>(17*41,504,993) - (11 * 64,144,080) = 1</strong></li>
+                <li>After successfully verifying, <strong>d</strong>'s value is in fact 41,504,993</li>
+            </ul>
+        </li>
+    </ol>
+
+    <p>
+        After solving to get the appropriate public keys and private key, Alice's public key is 64,144,080 (<strong>&phi;(N)</strong>),
+        and 17 (<strong>e</strong>), while her private key is 41,504,993 (<strong>d</strong>).
+    </p>
+
+    <h3>Encrypting A Message</h3>
+    <p>
+        Once Bob, obtains Alice's public key, Bob is capable of sending the message "CAT" to her securely. Before
+        jumping
+        into the encryption process, Bob first needs to convert the word "CAT" into a numbered value.
+        Bob can easily encode each character in the text "CAT" to its appropriate ASCII decimal value.
+    </p>
+    <ol>
+        <li>C = 67</li>
+        <li>A = 65</li>
+        <li>T = 84</li>
+        <li>Byte Sequence Result: [67, 65, 84] and the total number of bytes is 3.</li>
+    </ol>
+    <p>
+        With the byte sequence ready, we convert it into a large integer using the base-256 conversion formula which
+        will give us <strong>M</strong> (our message). We have a 3 byte sequence, the formula would look something like
+        this:
+    </p>
+    <ul>
+        <li><strong>M</strong> = (B<sub>1</sub> * 256<sup>2</sup>) + (B<sub>2</sub> * 256<sup>1</sup>) + (B<sub>3</sub>
+            * 256<sup>0</sup>)
+        </li>
+        <li><strong>M</strong> = (67 * 256<sup>2</sup>) + (65 * 256<sup>1</sup>) + (84 * 256<sup>0</sup>)</li>
+        <li><strong>M</strong> = 4,407,636</li>
+        <li>Note since <strong>M</strong> < <strong>N</strong>, we can appropriately encrypt the following message "CAT"</li>
+    </ul>
+
+    <p>
+        The formula for encryption is <strong>C = M<sup>e</sup> (mod N)</strong>
+    </p>
+    <ol>
+        <li><strong>C</strong> is the ciphertext</li>
+        <li><strong>M</strong> is the plaintext</li>
+        <li><strong>e</strong> is the public exponent also the recipient's public key</li>
+        <li><strong>mod N</strong> is modulus N and N is the recipient's public key</li>
+    </ol>
+    <ul>
+        <li><strong>C = M<sup>e</sup> (mod N)</strong></li>
+        <li><strong>C</strong> = (4,407,636 <sup>17</sup>) (mod 64,160,099)</li>
+        <li><strong>C</strong> = 16,575,496</li>
+    </ul>
+
+    <p>
+        On Alice’s end, she would receive the encrypted message “16,575,496” from Bob. To read this as plaintext, Alice
+        would need to use her private key to decrypt it.
+    </p>
+
+    <h3>Decrypting A Message</h3>
+    <p>
+        The formula for decryption is <strong>M = C<sup>d</sup> (mod N)</strong>
+    </p>
+    <ol>
+        <li><strong>M</strong> is the plaintext</li>
+        <li><strong>C</strong> is the ciphertext</li>
+        <li><strong>d</strong> is the given private key</li>
+        <li><strong>mod N</strong> is modulus N and N is the Alice's public key</li>
+    </ol>
+
+    <p>
+        Putting the formula all together:
+    </p>
+    <ul>
+        <li><strong>M = C<sup>d</sup> (mod N)</strong></li>
+        <li><strong>M</strong> = 16,575,496<sup>41,504,993</sup> (mod 64,160,099)</li>
+        <li><strong>M</strong> = 4,407,636</li>
+    </ul>
+
+    <p>
+        Remember we converted our message into Base-256 representation. If Alice want's to see what
+        the original text is, she is going have to figure out the length of the byte sequence. Alice can simply
+        divide 4,407,636 / 256, and repeat this step until she reaches 0, to reveal what the message is. Remainders
+        will reveal what the message is.
+    </p>
+    <ol>
+        <li>4,407,636/256 = 17,217 with a remainder of 84</li>
+        <li>17,217/256 = 67 with a remainder of 65</li>
+        <li>67/256 = 0 with a remainder of 67</li>
+    </ol>
+
+    <p>
+        Remember to reverse the order of the characters found, since we are working backwards. From there, convert each
+        remainder value to their respective ASCII character. [67, 65, 84] gives us [C, A, T].
+        Alice successfully got the plaintext message "CAT" from Bob.
+    </p>
+
+    <h2>Security Implications</h2>
+    <p>
+        Textbook RSA is never meant to be used in live production systems, and is meant to be used for educational
+        purposes only. Textbook RSA lacks padding mechanics, leading to RSA encryption being purely deterministic, and
+        this crypto system is vulnerable to man-in-the-middle attacks, chosen plaintext attack, and cube root attacks
+        (if e was 3, for example). These are some attacks that come to mind, but in real-world applications, RSA
+        2048-bit is primarily used as it still provides security, and would take billions of years for even super
+        computers to crack, though quantum technology is on the rise, lowering the time to potentially crack 2048-bit
+        key spaces.
+    </p>
+
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Bender, A. E., Williamson, G. S. (2005). <i>A Short Course in Discrete Mathematics</i>. Dover Publications.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Galbraith, D. S. (2012). <i>Mathematics of Public Key Cryptography</i>. Cambridge University Press
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Rivest, R. L., Shamir, A., Adleman, L. (1978). <i>A Method for Obtaining Digital
+            Signatures and Public-Key Cryptosystem</i>. Massachusetts Institute of Technology.
+            https://people.csail.mit.edu/rivest/Rsapaper.pdf
+        </li>
+    </ul>
+</div>
+</body>
+</html>
