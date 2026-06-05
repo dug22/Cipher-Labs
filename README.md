@@ -32,10 +32,13 @@ Cipher Labs, you can read more in the "docs" section
 - Workstation components visualize how some ciphers work in the backend.
 - Lock Spot integration. To learn more about Lock Spot, you can read up on it <a href=https://github.com/dug22/LockSpot/tree/master>here</a>
 
-## Documentation
-- Introductions, detailed articles, and other documentation can be found here: <a href=https://github.com/dug22/Cipher-Labs/tree/master/docs/>here</a>
+## Installation Process
+The steps on how to install Cipher Labs can be found <a href="https://github.com/dug22/Cipher-Labs/blob/master/docs/2.Installation_Process.md">here</a>
 
-# Releases
+## Documentation
+Introductions, detailed articles, and other documentation can be found here: <a href=https://github.com/dug22/Cipher-Labs/tree/master/docs/>here</a>
+
+## Releases
 Cipher Labs is distributed as an exe and can be downloaded from the <a href=https://github.com/dug22/Cipher-Labs/releases>repository's releases tab</a>. 
 
 ## Licensing
