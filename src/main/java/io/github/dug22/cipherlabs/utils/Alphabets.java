@@ -15,4 +15,8 @@ public class Alphabets {
     public static List<Character> ALNUM_CHAR_LIST = ALNUM.chars()
             .mapToObj(c -> (char) c)
             .toList();
+
+    public static boolean isInAlphabet(char value){
+        return ALPHABET.contains(String.valueOf(value));
+    }
 }

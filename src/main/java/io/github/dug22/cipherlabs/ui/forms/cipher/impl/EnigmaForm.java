@@ -1,17 +1,17 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher.impl;
 
-import io.github.dug22.cipherlabs.cipheralgorithms.CipherRegistry;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.enigma.*;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.enigma.reflector.ReflectorA;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.enigma.reflector.ReflectorB;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.enigma.reflector.ReflectorC;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.enigma.rotors.*;
+import io.github.dug22.cipherlabs.ciphers.CipherRegistry;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.enigma.*;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.enigma.reflector.ReflectorA;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.enigma.reflector.ReflectorB;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.enigma.reflector.ReflectorC;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.enigma.rotors.*;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
-import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormLayoutBuilder;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormActions;
+import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.TableHeaderRow;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.TextAlignment;
@@ -145,29 +144,28 @@ public class EnigmaForm extends CipherForm {
         traceTable = new TableView<>(traceData);
         traceTable.setMaxHeight(220);
         traceTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
-        String[] headers = {"Input", "Keyboard", "Plugboard", "Rotor III", "Rotor II", "Rotor I", "Reflector",
-                "Rotor I B", "Rotor II B", "Rotor III B", "Plugboard", "Output"};
+        String[] headers = {"Keyboard", "Plugboard", "Rotor III", "Rotor II", "Rotor I", "Reflector",
+                "Rotor I B", "Rotor II B", "Rotor III B", "Plugboard", "Lampboard"};
         for (int colIndex = 0; colIndex < headers.length; colIndex++) {
             final int finalIdx = colIndex;
             TableColumn<List<String>, String> column = new TableColumn<>(headers[colIndex]);
             column.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(finalIdx)));
             traceTable.getColumns().add(column);
         }
-        BorderPane formRoot = new CipherFormLayoutBuilder()
-                .addMainContent(plugboardHeaderLabel)
-                .addMainContent(plugboardTextfield)
-                .addMainContent(reflectorHeaderLabel)
-                .addMainContent(reflectorComboBox)
-                .addMainContent(ringHeaderLabel)
-                .addMainContent(ringSpinnerRow)
-                .addMainContent(rotorHeaderLabel)
-                .addMainContent(rotorOptionsRow)
-                .addMainContent(keyHeaderLabel)
-                .addMainContent(keyTextfield)
-                .addMainContent(traceTable)
-                .addBottomContent(getActionButtonsRow())
-                .build();
-        getDialogPane().setContent(formRoot);
+        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane.addCenteredContent(plugboardHeaderLabel);
+        cipherFormPane.addCenteredContent(plugboardTextfield);
+        cipherFormPane.addCenteredContent(reflectorHeaderLabel);
+        cipherFormPane.addCenteredContent(reflectorComboBox);
+        cipherFormPane.addCenteredContent(ringHeaderLabel);
+        cipherFormPane.addCenteredContent(ringSpinnerRow);
+        cipherFormPane.addCenteredContent(rotorHeaderLabel);
+        cipherFormPane.addCenteredContent(rotorOptionsRow);
+        cipherFormPane.addCenteredContent(keyHeaderLabel);
+        cipherFormPane.addCenteredContent(keyTextfield);
+        cipherFormPane.addCenteredContent(traceTable);
+        cipherFormPane.addBottomContent(getActionButtonsRow());
+        getDialogPane().setContent(cipherFormPane);
     }
 
     @Override
@@ -192,7 +190,7 @@ public class EnigmaForm extends CipherForm {
 
     private boolean isKeyAppropriate() {
         String key = keyTextfield.getText();
-        if(key.isEmpty()){
+        if (key.isEmpty()) {
             return true;
         }
         if (!key.matches("([^A-Z])") && key.length() != 3) {
@@ -289,7 +287,7 @@ public class EnigmaForm extends CipherForm {
         List<Rotor> animRotors = Arrays.asList(chooseRotor(rotorSpinnerI.getValue()), chooseRotor(rotorSpinnerII.getValue()), chooseRotor(rotorSpinnerIII.getValue()));
         Enigma animationEnigma = CipherRegistry.getEnigma(animReflector, animPlugboard, animKeyboard, animRotors);
         animationEnigma.setRings(new Rings(rings));
-        if(!key.isEmpty()) {
+        if (!key.isEmpty()) {
             animationEnigma.setKey(key);
         }
         traceData.clear();
@@ -312,4 +310,3 @@ public class EnigmaForm extends CipherForm {
         animationTimeline.play();
     }
 }
-

@@ -8,6 +8,15 @@ import java.util.function.Function;
 
 public enum Alerts {
 
+    BACON_DECRYPTION_ERROR(new AlertBuilder.Builder()
+            .setAlertType(Alert.AlertType.ERROR)
+            .setTitle("Bacon Cipher Decryption Error")
+            .setHeaderText("Decryption Error")
+            .setContentText("An error has occurred! Please make sure your text contains appropriate 5-character biliteral alphabets.")
+            .setImageView(getErrorLogo(), 64, 64)
+            .build()),
+
+
     CAESAR_KEY_ERROR(new AlertBuilder.Builder()
             .setAlertType(Alert.AlertType.ERROR)
             .setTitle("Key Input Error")

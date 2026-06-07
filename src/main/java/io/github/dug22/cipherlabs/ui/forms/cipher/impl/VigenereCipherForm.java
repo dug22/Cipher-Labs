@@ -1,16 +1,15 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher.impl;
 
-import io.github.dug22.cipherlabs.cipheralgorithms.CipherRegistry;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.VigenereCipher;
+import io.github.dug22.cipherlabs.ciphers.CipherRegistry;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.VigenereCipher;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
-import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormLayoutBuilder;
+import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
@@ -57,13 +56,12 @@ public class VigenereCipherForm extends CipherForm {
         crackTimePerMillionTextFlow.getChildren().addAll(crackTimePerMillionHeaderText, crackTimePerMillionResultText);
         keyCombinationsTextFlow.setTextAlignment(TextAlignment.CENTER);
         crackTimePerMillionTextFlow.setTextAlignment(TextAlignment.CENTER);
-        BorderPane formRoot = new CipherFormLayoutBuilder()
-                .addMainContent(keyOptionsRow)
-                .addBottomContent(getActionButtonsRow())
-                .addBottomContent(keyCombinationsTextFlow)
-                .addBottomContent(crackTimePerMillionTextFlow)
-                .build();
-        getDialogPane().setContent(formRoot);
+        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane.addCenteredContent(keyOptionsRow);
+        cipherFormPane.addBottomContent(getActionButtonsRow());
+        cipherFormPane.addBottomContent(keyCombinationsTextFlow);
+        cipherFormPane.addBottomContent(crackTimePerMillionTextFlow);
+        getDialogPane().setContent(cipherFormPane);
     }
 
     @Override

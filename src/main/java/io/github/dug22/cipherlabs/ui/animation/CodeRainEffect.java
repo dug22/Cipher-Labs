@@ -1,5 +1,6 @@
 package io.github.dug22.cipherlabs.ui.animation;
 
+import io.github.dug22.cipherlabs.utils.Alphabets;
 import javafx.animation.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -13,7 +14,7 @@ import java.util.Random;
 public class CodeRainEffect extends AbstractAnimation {
 
 
-    private final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+    private final String characters = Alphabets.ALPHABET + Alphabets.ALPHABET.toLowerCase() + "0123456789!@#$%^&*()";
     private final Random random = new Random();
     private Timeline spawnTimeline;
     private final GridPane gridPane = getGridPane();

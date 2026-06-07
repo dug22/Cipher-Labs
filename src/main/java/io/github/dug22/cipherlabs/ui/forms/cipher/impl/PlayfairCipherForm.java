@@ -1,8 +1,8 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher.impl;
 
 import io.github.dug22.cipherlabs.CipherLabsCore;
-import io.github.dug22.cipherlabs.cipheralgorithms.CipherRegistry;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.symmetric.PlayfairCipher;
+import io.github.dug22.cipherlabs.ciphers.CipherRegistry;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.PlayfairCipher;
 import io.github.dug22.cipherlabs.config.ConfigurationManager;
 import io.github.dug22.cipherlabs.config.ConfigurationRegistry;
 import io.github.dug22.cipherlabs.config.impl.EncryptionDecryptionConfig;
@@ -10,7 +10,7 @@ import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
-import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormLayoutBuilder;
+import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import io.github.dug22.cipherlabs.ui.node.SettingComboBox;
 import io.github.dug22.cipherlabs.utils.Alphabets;
 import javafx.geometry.Insets;
@@ -18,7 +18,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
@@ -84,10 +83,9 @@ public class PlayfairCipherForm extends CipherForm {
                 secondaryFillerCharacterComboBox,
                 keyTextField,
                 getActionButtonsRow());
-        BorderPane formRoot = new CipherFormLayoutBuilder()
-                .addMainContent(playfairCipherOptions)
-                .build();
-        getDialogPane().setContent(formRoot);
+        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane.addCenteredContent(playfairCipherOptions);
+        getDialogPane().setContent(cipherFormPane);
     }
 
     @Override
@@ -105,7 +103,7 @@ public class PlayfairCipherForm extends CipherForm {
 
         primaryFillerCharacterComboBox.getSelectionModel().selectedItemProperty().addListener((_, oldValue, newValue) -> {
 
-            if(newValue.equals(secondaryFillerCharacterComboBox.getValue())){
+            if (newValue.equals(secondaryFillerCharacterComboBox.getValue())) {
                 primaryFillerCharacterComboBox.setValue(oldValue);
                 Alerts.PLAYFAIR_FILLER_CHARACTER_ERROR.show();
                 return;
@@ -117,7 +115,7 @@ public class PlayfairCipherForm extends CipherForm {
         });
 
         secondaryFillerCharacterComboBox.getSelectionModel().selectedItemProperty().addListener((_, oldValue, newValue) -> {
-            if(newValue.equals(primaryFillerCharacterComboBox.getValue())){
+            if (newValue.equals(primaryFillerCharacterComboBox.getValue())) {
                 secondaryFillerCharacterComboBox.setValue(oldValue);
                 Alerts.PLAYFAIR_FILLER_CHARACTER_ERROR.show();
                 return;

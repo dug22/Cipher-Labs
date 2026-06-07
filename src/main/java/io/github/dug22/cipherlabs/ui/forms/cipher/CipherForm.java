@@ -1,6 +1,7 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher;
 
-import io.github.dug22.cipherlabs.cipheralgorithms.Cipher;
+import io.github.dug22.cipherlabs.ciphers.Cipher;
+import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.forms.AbstractForm;
@@ -56,6 +57,7 @@ public abstract class CipherForm extends AbstractForm<String> {
         cancelButton.setOnAction((_) -> {
             getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             close();
+            AnimationManager.terminate();
         });
     }
 

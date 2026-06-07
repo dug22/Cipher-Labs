@@ -24,6 +24,8 @@ public class LabelBuilder {
         private Pos alignmentPosition;
         private boolean wrapText = false;
         private TextAlignment textAlignment;
+        private double xLayout = -1.0;
+        private double yLayout = -1.0;
 
         public Builder setText(String text) {
             this.text = text;
@@ -80,6 +82,16 @@ public class LabelBuilder {
             return this;
         }
 
+        public Builder setLayoutX(double xLayout){
+            this.xLayout = xLayout;
+            return this;
+        }
+
+        public Builder setLayoutY(double yLayout){
+            this.yLayout = yLayout;
+            return this;
+        }
+
         public Label build() {
             Label label = new Label();
             label.setText(text);
@@ -111,6 +123,14 @@ public class LabelBuilder {
 
             if(textAlignment != null){
                 label.setTextAlignment(textAlignment);
+            }
+
+            if(xLayout != -1.0){
+                label.setLayoutX(xLayout);
+            }
+
+            if(yLayout != -1.0){
+                label.setLayoutY(yLayout);
             }
 
             return label;

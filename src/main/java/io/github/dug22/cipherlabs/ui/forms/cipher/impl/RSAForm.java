@@ -1,19 +1,18 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher.impl;
 
-import io.github.dug22.cipherlabs.cipheralgorithms.CipherRegistry;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.modern.asymmetric.RSA;
+import io.github.dug22.cipherlabs.ciphers.CipherRegistry;
+import io.github.dug22.cipherlabs.ciphers.algorithm.modern.asymmetric.RSA;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
-import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormLayoutBuilder;
+import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import io.github.dug22.cipherlabs.utils.MathUtils;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 import java.math.BigInteger;
@@ -75,12 +74,11 @@ public class RSAForm extends CipherForm {
                 });
 
 
-        BorderPane formRoot = new CipherFormLayoutBuilder()
-                .addMainContent(keyOptionsRow)
-                .addMainContent(nBitLength)
-                .addBottomContent(getActionButtonsRow())
-                .build();
-        getDialogPane().setContent(formRoot);
+        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane.addCenteredContent(keyOptionsRow);
+        cipherFormPane.addCenteredContent(nBitLength);
+        cipherFormPane.addBottomContent(getActionButtonsRow());
+        getDialogPane().setContent(cipherFormPane);
 
     }
 

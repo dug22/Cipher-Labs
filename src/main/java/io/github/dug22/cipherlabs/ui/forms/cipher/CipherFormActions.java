@@ -1,9 +1,9 @@
 package io.github.dug22.cipherlabs.ui.forms.cipher;
 
-import io.github.dug22.cipherlabs.cipheralgorithms.Cipher;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.ClassicSteganographicCipher;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.classic.ClassicSymmetricCipher;
-import io.github.dug22.cipherlabs.cipheralgorithms.impl.modern.asymmetric.RSA;
+import io.github.dug22.cipherlabs.ciphers.Cipher;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.ClassicSteganographicCipher;
+import io.github.dug22.cipherlabs.ciphers.algorithm.classic.ClassicSymmetricCipher;
+import io.github.dug22.cipherlabs.ciphers.algorithm.modern.asymmetric.RSA;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import javafx.application.Platform;
 import javafx.scene.control.Tab;

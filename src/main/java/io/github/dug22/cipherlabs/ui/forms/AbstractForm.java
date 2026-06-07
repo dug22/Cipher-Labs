@@ -21,8 +21,7 @@ public abstract class AbstractForm<R> extends Dialog<R> {
     protected void initDimensions() {
         setResizable(true);
         getDialogPane().setPrefSize(500, 400);
-        Platform.runLater(() -> setResizable(false));
-
+        setResizable(false);
     }
 
     protected abstract void initDescription();
