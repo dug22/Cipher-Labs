@@ -120,19 +120,15 @@ public class BaconianCipherVisual extends CipherVisual {
             String letter = step.letter();
             String code = step.code();
             Label letterLabel = alphabetLabelMap.get(letter);
-            letterLabel.setBackground(
-                    new Background(new BackgroundFill(
-                            Color.YELLOW,
-                            new CornerRadii(1),
-                            new Insets(0)
-                    )));
             Label baconCodeLabel = baconsCodeLabelMap.get(code);
-            baconCodeLabel.setBackground(
-                    new Background(new BackgroundFill(
-                            Color.YELLOW,
-                            new CornerRadii(1),
-                            new Insets(0)
-                    )));
+            Stream.of(letterLabel, baconCodeLabel).forEach(label -> {
+                label.setBackground(
+                        new Background(new BackgroundFill(
+                                Color.YELLOW,
+                                new CornerRadii(1),
+                                new Insets(0)
+                        )));
+            });
             PauseTransition removeHighlightPauseTransition = new PauseTransition(Duration.seconds(2));
             removeHighlightPauseTransition.setOnFinished((_) -> {
                 letterLabel.setBackground(null);
