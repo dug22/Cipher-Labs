@@ -8,7 +8,7 @@ import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
-import io.github.dug22.cipherlabs.ui.visuals.CaesarCipherVisual;
+import io.github.dug22.cipherlabs.ui.visuals.impl.CaesarCipherVisual;
 import io.github.dug22.cipherlabs.utils.Alphabets;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

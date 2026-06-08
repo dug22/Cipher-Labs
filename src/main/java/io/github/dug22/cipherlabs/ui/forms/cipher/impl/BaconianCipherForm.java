@@ -13,7 +13,7 @@ import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import io.github.dug22.cipherlabs.ui.node.SettingComboBox;
-import io.github.dug22.cipherlabs.ui.visuals.BaconianCipherVisual;
+import io.github.dug22.cipherlabs.ui.visuals.impl.BaconianCipherVisual;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -26,6 +26,8 @@ import javafx.stage.Window;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+
+import static io.github.dug22.cipherlabs.ui.utils.FormUtils.resize;
 
 public class BaconianCipherForm extends CipherForm {
 
@@ -121,33 +123,16 @@ public class BaconianCipherForm extends CipherForm {
     }
 
     private void initEncryptDecryptAction(boolean encrypt) {
-        resize(700);
+        resize(this,700);
         initEncryptDecryptAction(baconianCipher, encrypt, encrypt ? "Baconian Cipher Encrypted Result" : "Baconian Cipher Decrypted Result");
         Platform.runLater(() -> {
-            BaconianCipherVisual visual = new BaconianCipherVisual(baconianVisualPane, baconianCipher);
+            BaconianCipherVisual visual = new BaconianCipherVisual(this, baconianVisualPane, baconianCipher);
             AnimationManager.terminate();
             visual.clear();
-            visual.setOnFinished(() -> {
-                Platform.runLater(() -> resize(400));
-            });
             visual.play(encrypt);
             if (!cipherFormPane.getBottomContainer().getChildren().contains(baconianVisualPane)) {
                 cipherFormPane.getBottomContainer().getChildren().add(baconianVisualPane);
             }
         });
-    }
-
-    private void resize(int height) {
-        setResizable(true);
-        getDialogPane().setPrefSize(500, height);
-        getDialogPane().setMinSize(500, height);
-        getDialogPane().setMaxSize(500, height);
-        if (getDialogPane().getScene() != null && getDialogPane().getScene().getWindow() != null) {
-            Window window = getDialogPane().getScene().getWindow();
-            window.setHeight(height);
-            window.sizeToScene();
-        }
-
-        Platform.runLater(() -> setResizable(false));
     }
 }

@@ -1,9 +1,10 @@
-package io.github.dug22.cipherlabs.ui.visuals;
+package io.github.dug22.cipherlabs.ui.visuals.impl;
 
 import io.github.dug22.cipherlabs.ciphers.steps.CaesarCipherStep;
 import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.utils.VisualUtils;
+import io.github.dug22.cipherlabs.ui.visuals.CipherVisual;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -17,7 +18,7 @@ import javafx.util.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class CaesarCipherVisual {
+public class CaesarCipherVisual extends CipherVisual {
 
     private final List<CaesarCipherStep> steps;
     private final Pane visualPane;
@@ -35,8 +36,7 @@ public class CaesarCipherVisual {
             .build();
     private final TextField fromAlphabetTextField;
     private final TextField toAlphabetTextField;
-    private Timeline animationTimeline;
-    private Timeline clearAnimationTimeline;
+    private final Timeline animationTimeline;
     private PauseTransition toAlphabetHighlightPauseTransition;
     private PauseTransition clearFocusPauseTransition;
 
@@ -45,11 +45,12 @@ public class CaesarCipherVisual {
         this.steps = steps;
         this.fromAlphabetTextField = fromAlphabetTextField;
         this.toAlphabetTextField = toAlphabetTextField;
+        animationTimeline = new Timeline();
     }
 
     public void play(boolean encrypt) {
         buildVisualLayout(encrypt);
-        startAnimation();
+        startAnimation(animationTimeline, steps.size());
     }
 
     public void clear() {
@@ -78,30 +79,19 @@ public class CaesarCipherVisual {
         rectangleLabelMap.forEach(VisualUtils::centerTextInRectangle);
     }
 
-    private void startAnimation() {
-        animationTimeline = new Timeline();
-        AnimationManager.addAnimation(animationTimeline);
-        KeyFrame keyFrame = createKeyFrame();
-        animationTimeline.getKeyFrames().add(keyFrame);
-        animationTimeline.setCycleCount(steps.size());
-        animationTimeline.setOnFinished((_) -> {
-            clearAfterDelay(2);
-        });
-        animationTimeline.play();
-    }
-
-    private KeyFrame createKeyFrame() {
+    @Override
+    protected KeyFrame createKeyFrame() {
         return new KeyFrame(Duration.seconds(2), _ -> {
             if (steps.isEmpty()) {
                 visualPane.getChildren().clear();
                 return;
             }
             CaesarCipherStep step = steps.removeFirst();
-            fromCharLabel.setText(String.valueOf(step.getFromCharacter()));
-            shiftLabel.setText(String.valueOf(step.getShift()));
-            toCharLabel.setText(String.valueOf(step.getToCharacter()));
-            int fromIndex = fromAlphabetTextField.getText().indexOf(step.getFromCharacter());
-            int toIndex = toAlphabetTextField.getText().indexOf(step.getToCharacter());
+            fromCharLabel.setText(String.valueOf(step.fromCharacter()));
+            shiftLabel.setText(String.valueOf(step.shift()));
+            toCharLabel.setText(String.valueOf(step.toCharacter()));
+            int fromIndex = fromAlphabetTextField.getText().indexOf(step.fromCharacter());
+            int toIndex = toAlphabetTextField.getText().indexOf(step.toCharacter());
             fromAlphabetTextField.requestFocus();
             fromAlphabetTextField.selectRange(fromIndex, fromIndex + 1);
             toAlphabetHighlightPauseTransition = new PauseTransition(javafx.util.Duration.seconds(1));
@@ -122,8 +112,9 @@ public class CaesarCipherVisual {
         });
     }
 
-    private void clearAfterDelay(int delay) {
-        clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), _ -> visualPane.getChildren().clear()));
+    @Override
+    protected void clearAfterDelay(int delay) {
+        Timeline clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), _ -> visualPane.getChildren().clear()));
         AnimationManager.addAnimation(clearAnimationTimeline);
         clearAnimationTimeline.play();
     }

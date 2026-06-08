@@ -1,10 +1,19 @@
 package io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric;
 
 import io.github.dug22.cipherlabs.ciphers.algorithm.classic.ClassicSymmetricCipher;
+import io.github.dug22.cipherlabs.ciphers.steps.VigenereCipherStep;
 import io.github.dug22.cipherlabs.utils.Alphabets;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VigenereCipher extends ClassicSymmetricCipher {
 
+    private List<VigenereCipherStep> steps;
+
+    public VigenereCipher(){
+
+    }
 
     @Override
     public String name() {
@@ -33,6 +42,7 @@ public class VigenereCipher extends ClassicSymmetricCipher {
 
     @Override
     public String encrypt(String plaintext, String key) {
+        steps = new ArrayList<>();
         int plaintextLength = plaintext.length();
         int keyLength = key.length();
         StringBuilder ciphertext = new StringBuilder();
@@ -46,6 +56,7 @@ public class VigenereCipher extends ClassicSymmetricCipher {
                 int keyIndex = (i - unknownCharacters) % keyLength;
                 char cipherCharacter = (char) ('A' + ((plaintextCharacter - 'A') + (key.charAt(keyIndex) - 'A')) % 26);
                 ciphertext.append(cipherCharacter);
+                steps.add(new VigenereCipherStep(plaintextCharacter, key.charAt(keyIndex), cipherCharacter));
             }
         }
         return ciphertext.toString();
@@ -54,6 +65,7 @@ public class VigenereCipher extends ClassicSymmetricCipher {
 
     @Override
     public String decrypt(String ciphertext, String key) {
+        steps = new ArrayList<>();
         int ciphertextLength = ciphertext.length();
         int keyLength = key.length();
         StringBuilder plaintext = new StringBuilder();
@@ -67,8 +79,13 @@ public class VigenereCipher extends ClassicSymmetricCipher {
                 int keyIndex = (i - unknownCharacters) % keyLength;
                 char plaintextCharacter = (char) ('A' + (ciphertextCharacter - 'A' - (key.charAt(keyIndex) - 'A') + 26) % 26);
                 plaintext.append(plaintextCharacter);
+                steps.add(new VigenereCipherStep(ciphertextCharacter, key.charAt(keyIndex), plaintextCharacter));
             }
         }
         return plaintext.toString();
+    }
+
+    public List<VigenereCipherStep> getSteps() {
+        return steps;
     }
 }

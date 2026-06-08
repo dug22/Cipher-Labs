@@ -2,23 +2,30 @@ package io.github.dug22.cipherlabs.ui.forms.cipher.impl;
 
 import io.github.dug22.cipherlabs.ciphers.CipherRegistry;
 import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.VigenereCipher;
+import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
+import io.github.dug22.cipherlabs.ui.visuals.impl.VigenereCipherVisual;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
+import static io.github.dug22.cipherlabs.ui.utils.FormUtils.resize;
+
 
 public class VigenereCipherForm extends CipherForm {
 
+    private CipherFormPane cipherFormPane;
+    private Pane vigenereVisualPane;
     private final WorkStationController workStationController;
     private TextField keyTextField;
     private TextFlow keyCombinationsTextFlow;
@@ -35,7 +42,7 @@ public class VigenereCipherForm extends CipherForm {
 
     @Override
     protected void initOptions() {
-
+        vigenereVisualPane = new Pane();
         keyTextField = new TextField();
         keyTextField.setFocusTraversable(false);
         keyTextField.setMaxWidth(Double.MAX_VALUE);
@@ -56,11 +63,12 @@ public class VigenereCipherForm extends CipherForm {
         crackTimePerMillionTextFlow.getChildren().addAll(crackTimePerMillionHeaderText, crackTimePerMillionResultText);
         keyCombinationsTextFlow.setTextAlignment(TextAlignment.CENTER);
         crackTimePerMillionTextFlow.setTextAlignment(TextAlignment.CENTER);
-        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane = new CipherFormPane();
         cipherFormPane.addCenteredContent(keyOptionsRow);
         cipherFormPane.addBottomContent(getActionButtonsRow());
         cipherFormPane.addBottomContent(keyCombinationsTextFlow);
         cipherFormPane.addBottomContent(crackTimePerMillionTextFlow);
+        ;
         getDialogPane().setContent(cipherFormPane);
     }
 
@@ -82,10 +90,11 @@ public class VigenereCipherForm extends CipherForm {
                 Alerts.VIGENERE_KEY_ERROR.show();
                 return;
             }
-            initEncryptDecryptAction(vigenereCipher,keyTextField,true, "Vigenère Encrypted Result");
+            initEncryptDecryptAction(vigenereCipher, keyTextField, true, "Vigenère Encrypted Result");
             keyCombinationsResultText.setText("26^" + currentKey.length());
             keyCombinationsTextFlow.getChildren().setAll(keyCombinationsHeaderText, keyCombinationsResultText);
             crackTimePerMillionResultText.setText(String.format("%.2f seconds", Math.pow(26, currentKey.length()) / 1_000_000));
+            executeVisual();
         });
 
         getDecryptButton().setOnAction((_) -> {
@@ -94,9 +103,23 @@ public class VigenereCipherForm extends CipherForm {
                 Alerts.VIGENERE_KEY_ERROR.show();
                 return;
             }
-            initEncryptDecryptAction(vigenereCipher,keyTextField,false, "Vigenère Decrypted Result");
+            initEncryptDecryptAction(vigenereCipher, keyTextField, false, "Vigenère Decrypted Result");
             keyCombinationsResultText.setText("26^" + currentKey.length());
             crackTimePerMillionResultText.setText(String.format("%.2f seconds", Math.pow(26, currentKey.length()) / 1_000_000));
+            executeVisual();
         });
     }
+
+    private void executeVisual() {
+        resize(this, 700);
+        VigenereCipherVisual visual = new VigenereCipherVisual(this, vigenereVisualPane, vigenereCipher.getSteps());
+        AnimationManager.terminate();
+        visual.clear();
+        visual.play();
+        if (!cipherFormPane.getBottomContainer().getChildren().contains(vigenereVisualPane)) {
+            cipherFormPane.getBottomContainer().getChildren().add(vigenereVisualPane);
+        }
+
+    }
 }
+

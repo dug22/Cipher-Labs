@@ -1,17 +1,19 @@
-package io.github.dug22.cipherlabs.ui.visuals;
+package io.github.dug22.cipherlabs.ui.visuals.impl;
 
 import io.github.dug22.cipherlabs.ciphers.algorithm.classic.steganography.BaconianCipher;
 import io.github.dug22.cipherlabs.ciphers.steps.BaconCipherStep;
 import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
+import io.github.dug22.cipherlabs.ui.task.other.ResizeFormListener;
 import io.github.dug22.cipherlabs.ui.utils.VisualUtils;
+import io.github.dug22.cipherlabs.ui.visuals.CipherVisual;
 import io.github.dug22.cipherlabs.utils.Alphabets;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -22,26 +24,30 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
-public class BaconianCipherVisual {
+import static io.github.dug22.cipherlabs.ui.utils.VisualUtils.centerTextIntoRectangle;
 
+public class BaconianCipherVisual extends CipherVisual {
+
+    private final Dialog<String> form;
     private final Pane visualPane;
     private final BaconianCipher baconianCipher;
     private final Map<String, Label> alphabetLabelMap;
     private final Map<String, Label> baconsCodeLabelMap;
     private Runnable onFinished;
     private Timeline animationTimeline;
-    private Timeline clearAnimationTimeline;
 
-    public BaconianCipherVisual(Pane visualPane, BaconianCipher baconianCipher) {
+    public BaconianCipherVisual(Dialog<String> form, Pane visualPane, BaconianCipher baconianCipher) {
+        this.form = form;
         this.visualPane = visualPane;
         this.baconianCipher = baconianCipher;
         this.alphabetLabelMap = new ConcurrentHashMap<>();
         this.baconsCodeLabelMap = new ConcurrentHashMap<>();
+        animationTimeline = new Timeline();
     }
 
     public void play(boolean encrypt) {
         buildVisualLayout(encrypt);
-        startAnimation();
+        startAnimation(animationTimeline, baconianCipher.getSteps().size());
     }
 
     public void clear() {
@@ -108,26 +114,15 @@ public class BaconianCipherVisual {
         }
     }
 
-    private void startAnimation() {
-        animationTimeline = new Timeline();
-        AnimationManager.addAnimation(animationTimeline);
-        KeyFrame keyFrame = createKeyFrame();
-        animationTimeline.getKeyFrames().add(keyFrame);
-        animationTimeline.setCycleCount(baconianCipher.getSteps().size());
-        animationTimeline.setOnFinished((_) -> {
-            clearAfterDelay(2);
-        });
-        animationTimeline.play();
-    }
-
-    private KeyFrame createKeyFrame() {
+    @Override
+    protected KeyFrame createKeyFrame() {
         return new KeyFrame(Duration.seconds(2), (_) -> {
             if (baconianCipher.getSteps().isEmpty()) {
                 visualPane.getChildren().clear();
             }
             BaconCipherStep step = baconianCipher.getSteps().removeFirst();
-            String letter = step.getLetter();
-            String code = step.getCode();
+            String letter = step.letter();
+            String code = step.code();
             Label letterLabel = alphabetLabelMap.get(letter);
             letterLabel.setBackground(
                     new Background(new BackgroundFill(
@@ -154,29 +149,13 @@ public class BaconianCipherVisual {
     }
 
 
-    public void setOnFinished(Runnable onFinished) {
-        this.onFinished = onFinished;
-    }
-
-    private void clearAfterDelay(int delay) {
-        clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), (_) -> {
+    @Override
+    protected void clearAfterDelay(int delay) {
+        Timeline clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), (_) -> {
             visualPane.getChildren().clear();
-            if (onFinished != null) {
-                onFinished.run();
-            }
+            new ResizeFormListener(form, 400).run();
         }));
         AnimationManager.addAnimation(clearAnimationTimeline);
         clearAnimationTimeline.play();
-    }
-
-    private void centerTextIntoRectangle(VBox container, HBox parentHBox, Rectangle rectangle) {
-        container.layoutXProperty().bind(Bindings.createDoubleBinding(
-                () -> parentHBox.getLayoutX() + rectangle.getBoundsInParent().getMinX(),
-                parentHBox.layoutXProperty(), rectangle.boundsInParentProperty()
-        ));
-        container.layoutYProperty().bind(Bindings.createDoubleBinding(
-                () -> parentHBox.getLayoutY() + rectangle.getBoundsInParent().getMinY(),
-                parentHBox.layoutYProperty(), rectangle.boundsInParentProperty()
-        ));
     }
 }
