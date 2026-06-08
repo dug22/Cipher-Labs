@@ -8,7 +8,7 @@ import io.github.dug22.cipherlabs.ui.task.general.CloseApplicationTask;
 import io.github.dug22.cipherlabs.ui.task.general.SceneLoaderTask;
 import io.github.dug22.cipherlabs.ui.task.menu.OpenGitHubRepoTask;
 import io.github.dug22.cipherlabs.ui.task.menu.SaveDocumentTask;
-import io.github.dug22.cipherlabs.ui.task.menu.cipher.*;
+import io.github.dug22.cipherlabs.ui.task.menu.form.*;
 import io.github.dug22.cipherlabs.ui.utils.StageProperties;
 import io.github.dug22.cipherlabs.utils.Alphabets;
 import io.github.dug22.cipherlabs.utils.TextAnalysisUtils;
@@ -77,16 +77,16 @@ public class WorkStationController extends AbstractController {
         Menu encryptDecryptMenu = new MenuBuilder.Builder().createMenu("Encrypt/Decrypt")
                 .addSubMenu(new MenuBuilder.Builder()
                         .createMenu("Symmetric (Classic)")
-                        .addMenuItem("Caesar/ROT-13", new CaesarCipherTask(this, tabPane))
-                        .addMenuItem("Vigenere", new VigenereCipherTask(this, tabPane))
-                        .addMenuItem("Playfair", new PlayfairCipherTask(this, tabPane))
-                        .addMenuItem("Enigma", new EnigmaTask(this, tabPane))
+                        .addMenuItem("Caesar/ROT-13", new OpenCaesarCipherFormTask(this, tabPane))
+                        .addMenuItem("Vigenere", new OpenVigenereCipherFormTask(this, tabPane))
+                        .addMenuItem("Playfair", new OpenPlayfairCipherFormTask(this, tabPane))
+                        .addMenuItem("Enigma", new OpenEnigmaFormTask(this, tabPane))
                         .build())
                 .addSubMenu(new MenuBuilder.Builder().createMenu("Steganography (Classic)")
-                        .addMenuItem("Baconian", new BaconianCipherTask(this, tabPane))
+                        .addMenuItem("Baconian", new OpenBaconianCipherFormTask(this, tabPane))
                         .build())
                 .addSubMenu(new MenuBuilder.Builder().createMenu("Asymmetric ")
-                        .addMenuItem("RSA", new RSATask(this, tabPane))
+                        .addMenuItem("RSA", new OpenRSAFormTask(this, tabPane))
                         .build())
                 .build();
 

@@ -4,12 +4,12 @@ import io.github.dug22.cipherlabs.ui.task.CipherLabsRunnable;
 import io.github.dug22.cipherlabs.ui.utils.FormUtils;
 import javafx.scene.control.Dialog;
 
-public class ResizeFormListener implements CipherLabsRunnable {
+public class ResizeFormTask implements CipherLabsRunnable {
 
     private final Dialog<String> form;
     private final int height;
 
-    public ResizeFormListener(Dialog<String> form, int height) {
+    public ResizeFormTask(Dialog<String> form, int height) {
         this.form = form;
         this.height = height;
     }

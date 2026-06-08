@@ -1,22 +1,22 @@
-package io.github.dug22.cipherlabs.ui.task.menu.cipher;
+package io.github.dug22.cipherlabs.ui.task.menu.form;
 
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
-import io.github.dug22.cipherlabs.ui.forms.cipher.impl.PlayfairCipherForm;
+import io.github.dug22.cipherlabs.ui.forms.cipher.impl.EnigmaForm;
 import io.github.dug22.cipherlabs.ui.task.CipherLabsRunnable;
 import javafx.scene.control.TabPane;
 
-public class PlayfairCipherTask implements CipherLabsRunnable {
+public class OpenEnigmaFormTask implements CipherLabsRunnable {
 
     private WorkStationController workStationController;
     private TabPane tabPane;
 
-    public PlayfairCipherTask(WorkStationController workStationController, TabPane tabPane) {
+    public OpenEnigmaFormTask(WorkStationController workStationController, TabPane tabPane) {
         this.workStationController = workStationController;
         this.tabPane = tabPane;
     }
 
     @Override
     public void run() {
-        new PlayfairCipherForm(workStationController, tabPane).init();
+        new EnigmaForm(workStationController, tabPane).init();
     }
 }

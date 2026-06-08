@@ -4,7 +4,7 @@ import io.github.dug22.cipherlabs.ciphers.algorithm.classic.steganography.Baconi
 import io.github.dug22.cipherlabs.ciphers.steps.BaconCipherStep;
 import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
-import io.github.dug22.cipherlabs.ui.task.other.ResizeFormListener;
+import io.github.dug22.cipherlabs.ui.task.other.ResizeFormTask;
 import io.github.dug22.cipherlabs.ui.utils.VisualUtils;
 import io.github.dug22.cipherlabs.ui.visuals.CipherVisual;
 import io.github.dug22.cipherlabs.utils.Alphabets;
@@ -153,7 +153,7 @@ public class BaconianCipherVisual extends CipherVisual {
     protected void clearAfterDelay(int delay) {
         Timeline clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), (_) -> {
             visualPane.getChildren().clear();
-            new ResizeFormListener(form, 400).run();
+            new ResizeFormTask(form, 400).run();
         }));
         AnimationManager.addAnimation(clearAnimationTimeline);
         clearAnimationTimeline.play();
