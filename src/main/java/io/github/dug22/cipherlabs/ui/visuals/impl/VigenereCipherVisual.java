@@ -36,6 +36,7 @@ public class VigenereCipherVisual extends CipherVisual {
     private final Map<String, Label[]> alphabetLabelMap;
 
     public VigenereCipherVisual(Dialog<String> form, Pane visualPane, List<VigenereCipherStep> steps) {
+        super(visualPane);
         this.form = form;
         this.visualPane = visualPane;
         this.steps = steps;
@@ -46,10 +47,6 @@ public class VigenereCipherVisual extends CipherVisual {
     public void play() {
         buildVisualLayout();
         startAnimation(animationTimeline, steps.size());
-    }
-
-    public void clear() {
-        clearAfterDelay(0);
     }
 
     public void buildVisualLayout() {
@@ -135,12 +132,7 @@ public class VigenereCipherVisual extends CipherVisual {
     }
 
     @Override
-    protected void clearAfterDelay(int delay) {
-        Timeline clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), (_) -> {
-            visualPane.getChildren().clear();
-            new ResizeFormTask(form, 430).run();
-        }));
-        AnimationManager.addAnimation(clearAnimationTimeline);
-        clearAnimationTimeline.play();
+    protected Runnable getPostClearAction() {
+        return () -> new ResizeFormTask(form, 430).run();
     }
 }

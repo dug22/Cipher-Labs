@@ -33,10 +33,10 @@ public class BaconianCipherVisual extends CipherVisual {
     private final BaconianCipher baconianCipher;
     private final Map<String, Label> alphabetLabelMap;
     private final Map<String, Label> baconsCodeLabelMap;
-    private Runnable onFinished;
     private Timeline animationTimeline;
 
     public BaconianCipherVisual(Dialog<String> form, Pane visualPane, BaconianCipher baconianCipher) {
+        super(visualPane);
         this.form = form;
         this.visualPane = visualPane;
         this.baconianCipher = baconianCipher;
@@ -48,10 +48,6 @@ public class BaconianCipherVisual extends CipherVisual {
     public void play(boolean encrypt) {
         buildVisualLayout(encrypt);
         startAnimation(animationTimeline, baconianCipher.getSteps().size());
-    }
-
-    public void clear() {
-        clearAfterDelay(0);
     }
 
     private void buildVisualLayout(boolean encrypt) {
@@ -148,14 +144,8 @@ public class BaconianCipherVisual extends CipherVisual {
 
     }
 
-
     @Override
-    protected void clearAfterDelay(int delay) {
-        Timeline clearAnimationTimeline = new Timeline(new KeyFrame(Duration.seconds(delay), (_) -> {
-            visualPane.getChildren().clear();
-            new ResizeFormTask(form, 400).run();
-        }));
-        AnimationManager.addAnimation(clearAnimationTimeline);
-        clearAnimationTimeline.play();
+    protected Runnable getPostClearAction() {
+        return () -> new ResizeFormTask(form, 400).run();
     }
 }

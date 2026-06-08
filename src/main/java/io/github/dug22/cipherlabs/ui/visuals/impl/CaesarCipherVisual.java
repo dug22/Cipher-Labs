@@ -41,6 +41,7 @@ public class CaesarCipherVisual extends CipherVisual {
     private PauseTransition clearFocusPauseTransition;
 
     public CaesarCipherVisual(Pane visualPane, List<CaesarCipherStep> steps, TextField fromAlphabetTextField, TextField toAlphabetTextField) {
+        super(visualPane);
         this.visualPane = visualPane;
         this.steps = steps;
         this.fromAlphabetTextField = fromAlphabetTextField;
@@ -51,10 +52,6 @@ public class CaesarCipherVisual extends CipherVisual {
     public void play(boolean encrypt) {
         buildVisualLayout(encrypt);
         startAnimation(animationTimeline, steps.size());
-    }
-
-    public void clear() {
-        clearAfterDelay(0);
     }
 
     private void buildVisualLayout(boolean encrypt) {
