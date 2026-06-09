@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Cipher-Labs</title>
+    <title>Introduction to Cipher Labs</title>
     <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
 </head>
 <body>
 <header>
-    <h1>Cipher Labs Documentation</h1>
+    <h1>Introduction to Cipher Labs</h1>
 </header>
 <div class="article-content">
     <h2>About Cipher Labs</h2>
@@ -19,7 +19,7 @@
         classical and modern ciphers, and visualize how they work, a resources module that includes documentation on
         what Cipher Labs is and how it works, along with educational material on how the cipher algorithms that users
         can experiment with on the platform operate and work, plus Lock Spot’s module which was a separate command line
-        tool, but has now been integrated into Cipher Labs. If you’re not familiar with what LockSpot is, LockSpot is a
+        tool, but has now been integrated into Cipher Labs. If you’re not familiar with what Lock Spot is, Lock Spot is a
         machine learning tool that allows users to input ciphertext and receive a conducted analysis of the cipher
         algorithm most likely used to encrypt it, along with the cipher category it most likely belongs to. Cipher Labs
         is still in beta, but more features are on the way, including additional cipher algorithms to explore, a
@@ -129,8 +129,7 @@
     </table>
     <p>
         Lock Spot's small random forest model has been excluded due to the large size of its parameter file. As a
-        result, a
-        logistic regression model was trained on its behalf and has been integrated into Cipher Labs.
+        result, a logistic regression model was trained on its behalf and has been integrated into Cipher Labs.
         Small model architectures, were trained on identifying 15 initial classical cipher algorithms, which are:
     </p>
     <ol>
@@ -151,8 +150,8 @@
         <li>Vigenère Cipher</li>
     </ol>
     <p>
-        Large models are in the works, but these large models are planned to be trained on identifying
-        29 classical cipher algorithms, and trained on 160,000 unique records of ciphertext.
+        Large model architectures are currently under development, with plans to train them on a baseline dataset of
+        160,000 or more unique ciphertext records to identify 29 classical cipher algorithms.
     </p>
     <ol>
         <li>ADFGVX Cipher</li>
@@ -201,4 +200,5 @@
     </p>
 </div>
 </body>
+<script src="../resource-material/js/zoom.js"></script>
 </html>

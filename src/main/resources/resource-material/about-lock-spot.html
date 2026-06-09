@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information Behind Lock Spot</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Information Behind Lock Spot</h1>
+</header>
+
+<div class="article-content">
+
+
+    <h2>About Lock Spot</h2>
+    <p>
+        Lock Spot is a machine learning tool that allows users to input ciphertext and receive a conducted analysis of
+        the cipher algorithm most likely used to encrypt it, along with the cipher category it most likely belongs to
+        (such as monoalphabetic substitution, polyalphabetic substitution, transposition, and more). Lock Spot was
+        developed as an interactive command-line tool, but its core components have been integrated with Cipher Labs.
+    </p>
+
+    <h2>Lock Spot's Machine Learning Process</h2>
+    <h3>Data Preparation</h3>
+    <p>
+        Starting out, Lock Spot was trained on 50,000 records from Allen AI's C4 English dataset, which is a cleaned
+        version of Common Crawl's web crawl corpus. The models were trained only on texts longer than 90 characters.
+        Before training, Lock Spot's data collection protocol involved gathering texts from the Allen AI C4 dataset,
+        skipping short-length texts, and cleaning the data by removing special characters, converting all letters to
+        uppercase, and retaining only alphanumeric characters. All texts were then passed through the appropriate
+        encryption algorithms, producing new data such as the ciphertext result of the plaintext, a key (if the
+        algorithm used one), and text analysis features. Features were very important, as this input allowed our models
+        to distinguish which cipher algorithm a text was encrypted with and the cipher type it belonged to. The forty
+        features Lock Spot trained off of were:
+    </p>
+    <ol>
+        <li>Frequency probabilities of characters “A-Z” and “0-9” in the given ciphertext.</li>
+        <li>Were double letters or double digits present in the given ciphertext?</li>
+        <li>Was the letter "J" present (very important feature, because some classical ciphers either excluded or
+            combined the letter “J” with the letter
+            “I” like Playfair and Bacon) in the given ciphertext
+        </li>
+        <li>The index of coincidence (IoC)</li>
+    </ol>
+    <p>
+        These features and their corresponding
+        target labels (the “cipher type” and “cipher algorithm”) were fed into these models for training (a technique
+        known as supervised learning).
+    </p>
+    <h3>Models of Choice</h3>
+    <p>
+        The models of choice for this project were originally a feed-forward network and a random forest classifier. The
+        random forest classifier model
+        was excluded due to the large size of the model's parameter file. Due to those circumstances, a logistic
+        regression model
+        was trained on its behalf and was integrated into Cipher Labs.
+    </p>
+
+    <h3>
+        Model Architectures and Classification Capabilities
+    </h3>
+    <p>
+        There are two types of model architectures, which are small and large model architectures. From the ciphertext
+        alone, small model architectures were trained to classify
+        the following cipher algorithms:
+    </p>
+    <ol>
+        <li>ADFGVX Cipher</li>
+        <li>Affine Cipher</li>
+        <li>AMSCO Cipher</li>
+        <li>Atbash Cipher</li>
+        <li>Autokey Cipher</li>
+        <li>Baconian Cipher</li>
+        <li>Beaufort Cipher</li>
+        <li>Bifid Cipher</li>
+        <li>Caesar Cipher</li>
+        <li>Gronsfeld Cipher</li>
+        <li>Playfair Cipher</li>
+        <li>Polybius Cipher</li>
+        <li>Porta Cipher</li>
+        <li>Railfence Cipher</li>
+        <li>Vigenère Cipher</li>
+    </ol>
+    <p>Originally, small model architectures were trained on 50,000 unique records of ciphertext and their extracted
+        features. Plans are under development to expand the dataset volume, allowing small model architectures to learn
+        other patterns of ciphertext that are currently missing (the same principles apply to large architecture
+        models).</p>
+    <p>
+        Large model architectures are currently under development, with plans to train them on a baseline dataset of
+        160,000 or more unique ciphertext records to identify 29 classical cipher algorithms.
+    </p>
+    <ol>
+        <li>ADFGVX Cipher</li>
+        <li>Affine Cipher</li>
+        <li>Alberti Cipher</li>
+        <li>AMSCO Cipher</li>
+        <li>Atbash Cipher</li>
+        <li>Autokey Cipher</li>
+        <li>Baconian Cipher</li>
+        <li>Bazeries</li>
+        <li>Beaufort Cipher</li>
+        <li>Bifid Cipher</li>
+        <li>Cadenus</li>
+        <li>Caesar Cipher</li>
+        <li>Columnar</li>
+        <li>Grandpré Cipher</li>
+        <li>Gronsfeld Cipher</li>
+        <li>Hill Cipher</li>
+        <li>Myszkowski Cipher</li>
+        <li>Nihilist Substitution Cipher</li>
+        <li>Nihilist Transposition Cipher</li>
+        <li>Playfair Cipher</li>
+        <li>Polybius Cipher</li>
+        <li>Porta Cipher</li>
+        <li>Railfence Cipher</li>
+        <li>Route Cipher</li>
+        <li>Running Key Cipher</li>
+        <li>Trifid Cipher</li>
+        <li>Trithemius Cipher</li>
+        <li>Two Square Cipher</li>
+        <li>Vigenère Cipher</li>
+    </ol>
+    <p>
+        Cipher types that Lock Spot's current model architectures can classify are:
+    </p>
+    <ol>
+        <li>Transposition</li>
+        <li>Fractionating</li>
+        <li>Polyalphabetic Substitution</li>
+        <li>Monoalphabetic Substitution</li>
+        <li>Polygraphic Substitution</li>
+        <li>Stenographic</li>
+    </ol>
+
+    <h3>Model Performance</h3>
+    <p>
+        The figure below resembles what small model architectures achieved in performance, from the baseline of 50,000
+        unique ciphertext records, and its features (dataset volume is bound to increase), these models were trained on:
+    </p>
+    <table align="center" border="1" style="text-align: center;">
+        <tr>
+            <th>Model Name</th>
+            <th>Accuracy in % of Identifying the Given Cipher Type</th>
+            <th>Accuracy in % of Identifying the Given Cipher Algorithm</th>
+            <th>Average Accuracy in %</th>
+        </tr>
+        <tr>
+            <td>Lock_Spot_Small_FFN_Model</td>
+            <td>99.18</td>
+            <td>87.57</td>
+            <td>93.375</td>
+        </tr>
+        <tr>
+            <td>Lock_Spot_Small_Logistic_Regression_Model</td>
+            <td>95.76</td>
+            <td>73.77</td>
+            <td>84.765</td>
+        </tr>
+    </table>
+    <h2>Accessing and Utilizing Lock Spot's Module On Cipher Labs</h2>
+    <p style="text-align: center;">To access Lock Spot's module on Cipher Labs, simply click on the top or center
+        navigation label called
+        "Lock Spot"</p>
+    <img src="../resource-material/imgs/how-to-access-lock-spot.png"
+         srcset="../resource-material/imgs/how-to-access-lock-spot.png 2x"
+        >
+
+    <img src="../resource-material/imgs/lock-spot-screen.png"
+        >
+    <p>
+        The figure above resembles Lock Spot's user interface. The arrows that you see on display are of the following:
+    </p>
+    <ol>
+        <li><strong>Model Architecture Dropdown Box</strong> (located above the analyze button): Allows you to select a model of choice when analyzing inputted ciphertext</li>
+        <li><strong>Ciphertext Length</strong> (located on the top): Allows you to see how many characters in your cipher. Do note that Lock Spot requires the given ciphertext length to be 100 characters or more.</li>
+        <li><strong>Generated Report</strong> (located underneath the analyze button): are the model's predictions</li>
+    </ol>
+    <p>Before analyzing any given ciphertext, make sure that your given ciphertext follows four format rules:</p>
+    <ol>
+        <li>Ciphertext can only be alphabetic or alphanumeric.</li>
+        <li>Given ciphertexts must be 100 characters or more.</li>
+        <li>All letters within the given ciphertext must be uppercase.</li>
+        <li>No special characters are allowed.</li>
+    </ol>
+    <p>
+        If your ciphertext follows the format rules above, click analyze to get a report of our model's predictions.
+    </p>
+</div>
+</body>
+<script src="../resource-material/js/zoom.js"></script>
+</html>
