@@ -51,8 +51,8 @@ public class ResourcesController extends AbstractController {
 
     private final Map<String, String> cipherLabsDocumentationMap = new TreeMap<>(Map.ofEntries(
             Map.entry("About Cipher Labs", "/resource-material/about-cipher-labs-article.html"),
-            Map.entry("About Lock Spot", "/resource-material/about-lock-spot.html"),
-            Map.entry("About Cipher Labs Resources", "/resource-material/about-cipher-labs-resources.html"),
+            Map.entry("About Lock Spot", "/resource-material/about-lock-spot-article.html"),
+            Map.entry("About Cipher Labs Resources", "/resource-material/about-cipher-labs-resources-article.html"),
             Map.entry("Cipher Labs Changelog", "/resource-material/changelog.html")
     ));
 

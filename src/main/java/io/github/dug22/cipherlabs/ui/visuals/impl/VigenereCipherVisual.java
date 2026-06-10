@@ -49,7 +49,7 @@ public class VigenereCipherVisual extends CipherVisual {
         startAnimation(animationTimeline, steps.size());
     }
 
-    public void buildVisualLayout() {
+    private void buildVisualLayout() {
         visualPane.getChildren().clear();
         HBox visualHBox = new HBox(5);
         Rectangle messageAlphabetRectangle = VisualUtils.createRectangle(-1, -1, 85, 225);

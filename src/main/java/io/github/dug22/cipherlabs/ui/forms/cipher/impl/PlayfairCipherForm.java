@@ -6,25 +6,30 @@ import io.github.dug22.cipherlabs.ciphers.algorithm.classic.symmetric.PlayfairCi
 import io.github.dug22.cipherlabs.config.ConfigurationManager;
 import io.github.dug22.cipherlabs.config.ConfigurationRegistry;
 import io.github.dug22.cipherlabs.config.impl.EncryptionDecryptionConfig;
+import io.github.dug22.cipherlabs.ui.animation.AnimationManager;
 import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
 import io.github.dug22.cipherlabs.ui.controllers.types.WorkStationController;
 import io.github.dug22.cipherlabs.ui.dialog.Alerts;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherForm;
 import io.github.dug22.cipherlabs.ui.forms.cipher.CipherFormPane;
 import io.github.dug22.cipherlabs.ui.node.SettingComboBox;
+import io.github.dug22.cipherlabs.ui.visuals.impl.PlayfairCipherVisual;
 import io.github.dug22.cipherlabs.utils.Alphabets;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
 
+import static io.github.dug22.cipherlabs.ui.utils.FormUtils.resize;
+
 public class PlayfairCipherForm extends CipherForm {
 
-
+    private CipherFormPane cipherFormPane;
     private final CipherLabsCore instance = CipherLabsCore.getInstance();
     private final ConfigurationManager configurationManager = instance.getConfigManager();
     private final ConfigurationRegistry configurationRegistry = instance.getConfigRegistry();
@@ -35,6 +40,7 @@ public class PlayfairCipherForm extends CipherForm {
     private SettingComboBox<Character> primaryFillerCharacterComboBox;
     private SettingComboBox<Character> secondaryFillerCharacterComboBox;
     private TextField keyTextField;
+    private GridPane playfairVisualPane;
 
     public PlayfairCipherForm(WorkStationController workStationController, TabPane tabPane) {
         super(workStationController, tabPane, "playfair-cipher-form-description.txt", new String[]{"Playfair"});
@@ -44,6 +50,7 @@ public class PlayfairCipherForm extends CipherForm {
 
     @Override
     protected void initOptions() {
+        playfairVisualPane = new GridPane();
         Label primaryFillerCharacterLabel = new LabelBuilder.Builder()
                 .setText("Primary Filler Character")
                 .setFontSize(16)
@@ -83,7 +90,7 @@ public class PlayfairCipherForm extends CipherForm {
                 secondaryFillerCharacterComboBox,
                 keyTextField,
                 getActionButtonsRow());
-        CipherFormPane cipherFormPane = new CipherFormPane();
+        cipherFormPane = new CipherFormPane();
         cipherFormPane.addCenteredContent(playfairCipherOptions);
         getDialogPane().setContent(cipherFormPane);
     }
@@ -133,6 +140,7 @@ public class PlayfairCipherForm extends CipherForm {
                 return;
             }
             initEncryptDecryptAction(playfairCipher, keyTextField, true, "Playfair Encrypted Result");
+            executeVisual();
         });
         getDecryptButton().setOnAction((_) -> {
             String currentKey = keyTextField.getText();
@@ -141,6 +149,18 @@ public class PlayfairCipherForm extends CipherForm {
                 return;
             }
             initEncryptDecryptAction(playfairCipher, keyTextField, false, "Playfair Decrypted Result");
+            executeVisual();
         });
+    }
+
+    private void executeVisual(){
+        resize(this, 700);
+        PlayfairCipherVisual visual = new PlayfairCipherVisual(this, playfairVisualPane, playfairCipher.getPolybiusSquare(), playfairCipher.getSteps());
+        AnimationManager.terminate();
+        visual.clear();
+        visual.play();
+        if (!cipherFormPane.getBottomContainer().getChildren().contains(playfairVisualPane)) {
+            cipherFormPane.getBottomContainer().getChildren().add(playfairVisualPane);
+        }
     }
 }

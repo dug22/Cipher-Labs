@@ -1,6 +1,7 @@
 package io.github.dug22.cipherlabs.ui.builder;
 
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -26,6 +27,7 @@ public class LabelBuilder {
         private TextAlignment textAlignment;
         private double xLayout = -1.0;
         private double yLayout = -1.0;
+
 
         public Builder setText(String text) {
             this.text = text;

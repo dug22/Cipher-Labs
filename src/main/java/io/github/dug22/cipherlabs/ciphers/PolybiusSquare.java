@@ -1,5 +1,7 @@
 package io.github.dug22.cipherlabs.ciphers;
 
+import io.github.dug22.cipherlabs.utils.Alphabets;
+
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -36,7 +38,7 @@ public class PolybiusSquare {
             }
         }
 
-        String alphabet = "ABCEDEFGHIJKLMOPQRSTUVWXYZ";
+        String alphabet = Alphabets.ALPHABET.replace("J", "");
         for (char character : alphabet.toCharArray()) {
             if (Character.isLetter(character) && character != disallowedCharacter) {
                 uniqueCharacters.add(character);
