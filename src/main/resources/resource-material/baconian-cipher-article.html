@@ -148,17 +148,21 @@
     </p>
     <ul>
         <li>SECRET</li>
-        <li>S,E,C,R,E,T</li>
-        <ol>
-            <li>S = BAAAB</li>
-            <li>E = AABAA</li>
-            <li>C = AAABA</li>
-            <li>R = BAAAA</li>
-            <li>E = AABAA</li>
-            <li>T = BAABA</li>
-        </ol>
+        <li>
+            S,E,C,R,E,T
+            <!-- Sub-bullets start inside the open parent <li> tag -->
+            <ol>
+                <li>S = BAAAB</li>
+                <li>E = AABAA</li>
+                <li>C = AAABA</li>
+                <li>R = BAAAA</li>
+                <li>E = AABAA</li>
+                <li>T = BAABA</li>
+            </ol>
+        </li> <!-- Parent <li> closes after the sub-list -->
         <li>Final Result: BAAABAABAAAAABABAAAAAABAABAABA</li>
     </ul>
+
 
     <h2>Decoding A Message Using Bacon's Cipher</h2>
     <p>
@@ -173,18 +177,21 @@
     <p>
         Example down below following the rules above:
     </p>
-    <ol>
-        <li>BAAAB AABAA AAABA BAAAA AABAA BAABA</li>
-        <ol>
-            <li>BAAAB = S</li>
-            <li>AABAA = E</li>
-            <li>AAABA = C</li>
-            <li>BAAAA = R</li>
-            <li>AABAA = E</li>
-            <li>BAABA = T</li>
-        </ol>
+    <ul>
+        <li>
+            BAAAB AABAA AAABA BAAAA AABAA BAABA
+            <ol>
+                <li>BAAAB = S</li>
+                <li>AABAA = E</li>
+                <li>AAABA = C</li>
+                <li>BAAAA = R</li>
+                <li>AABAA = E</li>
+                <li>BAABA = T</li>
+            </ol>
+        </li>
         <li>Final Result: SECRET</li>
-    </ol>
+    </ul>
+
     <h2>Hiding Secret Messages In Sentences</h2>
     <p>
         We went over the basic encoding/decoding practices of the Bacon cipher, but we never went over the

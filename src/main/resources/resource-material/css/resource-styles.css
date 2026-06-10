@@ -18,7 +18,7 @@ header {
 
 .changelog-container,
 .article-content {
-    max-width: 76%;
+    max-width: 95%;
     margin: 2rem auto;
     background: #fff;
     padding: 2rem;
@@ -26,15 +26,18 @@ header {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
     overflow-x: auto;
 }
-
 .article-content h2,
 .article-content h3 {
-    text-align: center;
+    text-align: left;
     color: #34495e;
-    font-size: 2em;
+    font-size: 2rem;
+    font-weight: 700;
     padding-bottom: 5px;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.article-content h3 {
+    font-size: 1.4em;
 }
 
 .article-content h3 {
@@ -43,8 +46,9 @@ header {
 
 .article-content p {
     font-size: 1.4em;
-    margin: 1rem 0;
-    text-align: justify;
+    margin: 1.5rem 0;
+    padding-left: 0;
+    text-align: left;
 }
 
 .baconian-table-container {
@@ -52,12 +56,19 @@ header {
     width: 100%;
 }
 
-.article-content ul li,
-.article-content ol li {
+.article-content ul,
+.article-content ol {
+    font-size: 1.2em;
+    margin: 1.5rem 0;
+    padding-left: 2.5rem;
+}
+
+.article-content ul li ol,
+.article-content ol li ul {
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    font-size: 1.4em;
+    font-size: 1.0em;
 }
 
 .table, th,td {
@@ -72,25 +83,22 @@ header {
 }
 
 .changelog-entry h2 {
-    text-align: center;
+    text-align: left;
     font-size: 2em;
 }
 
-.changelog-entry ul li,
-.changelog-entry ol li {
+.changelog-entry ul li ol,
+.changelog-entry ol li ul {
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    font-size: 1.1em;
-    text-align: center;
-    list-style-position: inside;
+    text-align: left;
 }
 
 .changelog-container h1{
     text-align: center;
 
 }
-
 
 .dropdown {
   display: inline-flex;
@@ -148,7 +156,6 @@ img {
   cursor: zoom-in;
   image-rendering: -webkit-optimize-contrast;
   object-fit: contain;
-  aspect-ratio: 3/2;
 
 }
 

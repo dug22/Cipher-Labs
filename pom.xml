@@ -6,7 +6,7 @@
 
     <groupId>io.github.dug22</groupId>
     <artifactId>CipherLabs</artifactId>
-    <version>1.0.0-beta</version>
+    <version>1.0.0</version>
     <name>CipherLabs</name>
 
     <properties>
