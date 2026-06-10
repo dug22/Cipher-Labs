@@ -19,9 +19,23 @@ Cipher Labs, you can read more in the "docs" section
 
 ## Media
 
-# <img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/home-page.png" style="width: 100%; height: 50%;">
+### Home Page
+<img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/home-page.png" width="100%">
 
-# <img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/workstation-example.png" style="width: 100%; height: 50%;">
+---
+
+### Visual Demos
+| Playfair Cipher Demo | Vigenère Cipher Demo |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/347b5adf-9504-45f2-85df-aa4e5b1250dc" width="100%" alt="playfair-visual-demo"> | <img src="https://github.com/user-attachments/assets/f3db9b9e-0061-4fb0-9533-71740b3c9c45" width="100%" alt="vigenere-visual-demo"> |
+
+---
+
+### Workstation
+<img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/workstation-example.png" width="100%">
+
+### Lock Spot
+<img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/lock-spot-screen.png" width="100%">
 
 ## Features
 - Written in Java. The graphical user interface was created using JavaFX.
