@@ -17,6 +17,8 @@ research, the platform provides a user-friendly environment to accomplish both. 
 Cipher Labs, you can read more in the "docs" section
 <a href=https://github.com/dug22/Cipher-Labs/blob/master/docs/1.Introduction_To_Cipher_Labs.md>here</a>
 
+The website version of this application is currently in the works: https://cipherlabsonline.github.io
+
 ## Media
 
 ### Home Page
