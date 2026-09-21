@@ -1,6 +1,6 @@
 
 <p align="center">
-<img width="128" height="128" alt="image" align="center" src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/images/cipher-labs-desktop-icon.png" />
+<img width="128" height="128" alt="image" align="center" src="https://github.com/dug22/Cipher-Labs/blob/master/cipher-labs-ui/src/main/resources/images/cipher-labs-desktop-icon.png" />
 </p>
 <div align="center">
 
@@ -20,7 +20,7 @@ Cipher Labs, you can read more in the "docs" section
 ## Media
 
 ### Home Page
-<img src="https://github.com/dug22/Cipher-Labs/blob/master/src/main/resources/resource-material/imgs/home-page.png" width="100%">
+<img src="https://github.com/dug22/Cipher-Labs/blob/master/cipher-labs-resources/src/main/resources/resource-material/imgs/home-page.png" width="100%">
 
 ---
 
