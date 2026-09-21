@@ -1,0 +1,118 @@
+package io.github.dug22.cipherlabs.ui.visuals.impl;
+
+import io.github.dug22.cipherlabs.core.ciphers.steps.CaesarCipherStep;
+import io.github.dug22.cipherlabs.ui.builder.LabelBuilder;
+import io.github.dug22.cipherlabs.ui.forms.cipher.impl.CaesarCipherForm;
+import io.github.dug22.cipherlabs.ui.utils.VisualUtils;
+import io.github.dug22.cipherlabs.ui.visuals.CipherVisual;
+import io.github.dug22.cipherlabs.ui.visuals.VisualAnimationManager;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+
+import java.util.List;
+import java.util.Map;
+
+public class CaesarCipherVisual extends CipherVisual {
+
+    private final CaesarCipherForm form;
+    private final List<CaesarCipherStep> steps;
+    private final Pane visualPane;
+    private final Label fromCharLabel = new LabelBuilder.Builder()
+            .setText("")
+            .setAlignment(Pos.CENTER)
+            .build();
+    private final Label shiftLabel = new LabelBuilder.Builder()
+            .setText("")
+            .setAlignment(Pos.CENTER)
+            .build();
+    private final Label toCharLabel = new LabelBuilder.Builder()
+            .setText("")
+            .setAlignment(Pos.CENTER)
+            .build();
+    private final TextField fromAlphabetTextField;
+    private final TextField toAlphabetTextField;
+    private final Timeline animationTimeline;
+    private PauseTransition toAlphabetHighlightPauseTransition;
+    private PauseTransition clearFocusPauseTransition;
+
+    public CaesarCipherVisual(Pane visualPane, CaesarCipherForm form, List<CaesarCipherStep> steps, TextField fromAlphabetTextField, TextField toAlphabetTextField) {
+        super(visualPane);
+        this.visualPane = visualPane;
+        this.form = form;
+        this.steps = steps;
+        this.fromAlphabetTextField = fromAlphabetTextField;
+        this.toAlphabetTextField = toAlphabetTextField;
+        animationTimeline = new Timeline();
+    }
+
+    public void play(boolean encrypt) {
+        buildVisualLayout(encrypt);
+        startAnimation(form, animationTimeline, steps.size());
+    }
+
+    private void buildVisualLayout(boolean encrypt) {
+        visualPane.getChildren().clear();
+        Rectangle fromRectangle = createRectangle(150, 10);
+        Label operatorLabel = new LabelBuilder.Builder()
+                .setText(encrypt ? "+" : "-")
+                .setFontSize(25)
+                .setLayoutX(225)
+                .setLayoutY(15)
+                .build();
+        Rectangle shiftRectangle = createRectangle(250, 10);
+        Label equalsLabel = new LabelBuilder.Builder()
+                .setText("=")
+                .setFontSize(25)
+                .setLayoutX(325)
+                .setLayoutY(15)
+                .build();
+        Rectangle toRectangle = createRectangle(350, 10);
+        visualPane.getChildren().addAll(fromRectangle, fromCharLabel, operatorLabel, shiftRectangle, shiftLabel, equalsLabel, toRectangle, toCharLabel);
+        Map<Rectangle, Label> rectangleLabelMap = Map.of(fromRectangle, fromCharLabel, shiftRectangle, shiftLabel, toRectangle, toCharLabel);
+        rectangleLabelMap.forEach(VisualUtils::centerTextInRectangle);
+    }
+
+    @Override
+    protected KeyFrame createKeyFrame() {
+        return new KeyFrame(Duration.seconds(2), _ -> {
+            if (steps.isEmpty()) {
+                visualPane.getChildren().clear();
+                return;
+            }
+            CaesarCipherStep step = steps.removeFirst();
+            fromCharLabel.setText(String.valueOf(step.fromCharacter()));
+            shiftLabel.setText(String.valueOf(step.shift()));
+            toCharLabel.setText(String.valueOf(step.toCharacter()));
+            int fromIndex = fromAlphabetTextField.getText().indexOf(step.fromCharacter());
+            int toIndex = toAlphabetTextField.getText().indexOf(step.toCharacter());
+            fromAlphabetTextField.requestFocus();
+            fromAlphabetTextField.selectRange(fromIndex, fromIndex + 1);
+            toAlphabetHighlightPauseTransition = new PauseTransition(Duration.seconds(1));
+            VisualAnimationManager.addAnimation(toAlphabetHighlightPauseTransition);
+            toAlphabetHighlightPauseTransition.setOnFinished(_ -> {
+                toAlphabetTextField.requestFocus();
+                toAlphabetTextField.selectRange(toIndex, toIndex + 1);
+                clearFocusPauseTransition = new PauseTransition(Duration.seconds(0.8));
+                VisualAnimationManager.addAnimation(clearFocusPauseTransition);
+                clearFocusPauseTransition.setOnFinished((_) -> {
+                    fromAlphabetTextField.deselect();
+                    toAlphabetTextField.deselect();
+                    visualPane.requestFocus();
+                });
+                clearFocusPauseTransition.play();
+            });
+            toAlphabetHighlightPauseTransition.play();
+        });
+    }
+
+    private Rectangle createRectangle(double x, double y) {
+        return VisualUtils.createRectangle(x, y, 50, 50);
+    }
+}

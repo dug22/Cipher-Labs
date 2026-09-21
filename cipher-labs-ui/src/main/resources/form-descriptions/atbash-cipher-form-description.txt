@@ -1,0 +1,1 @@
+The Atbash cipher is a monoalphabetic substitution cipher, where each letter in the alphabet is mapped to its reverse. For example, the letter “A” would become the letter “Z”, the letter “B” would become the letter “Y”, and vice versa. If you need a visual aid for reference, just draw the English alphabet in chronological and reverse order.

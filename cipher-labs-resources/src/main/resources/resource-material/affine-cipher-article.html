@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Affine Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Affine Cipher</h1>
+</header>
+
+<div class="article-content">
+    <h2>What is the Affine Cipher?</h2>
+    <p>
+        The <strong>Affine cipher</strong> is a <strong>monoalphabetic substitution cipher</strong> in which each letter
+        is converted to its numerical
+        counterpart. From there the Affine cipher utilizes a linear algebraic formula to encrypt, and decrypt each
+        character within a given message.
+    </p>
+
+    <h2>The Encryption Process</h2>
+    <p>
+        The encryption process works by picking two key-based numbers, known as <strong>"a"</strong> and
+        <strong>"b"</strong>, and then
+        plugging them into this formula:
+    </p>
+
+    <ul>
+        <li><strong>Encryption Formula:</strong> <i>E(x) = (ax + b) mod 26</i>
+            <ol>
+                <li>“X” in the formula resembles the mapped numerical value of the plaintext character (A = 0, B = 1… Z = 25).
+                </li>
+                <li>Note the values that <strong>"a"</strong> could be:
+                    <strong>1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, and 25</strong>, as they are coprime to 26.
+                </li>
+                <li>The value <strong>"b"</strong> can be any number 1–26.</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3> Encryption Example</h3>
+
+    <p><strong>Plaintext:</strong> HELLO</p>
+    <p><strong>Keys:</strong> a = 5, b = 8</p>
+
+    <table border="1" align="center">
+        <tr>
+            <th>Letter</th>
+            <th>x</th>
+            <th>Calculation</th>
+            <th>Ciphertext</th>
+        </tr>
+        <tr>
+            <td>H</td>
+            <td>7</td>
+            <td>(5 × 7 + 8) mod 26 = 43 mod 26 = 17</td>
+            <td>R</td>
+        </tr>
+        <tr>
+            <td>E</td>
+            <td>4</td>
+            <td>(5 × 4 + 8) mod 26 = 28 mod 26 = 2</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>11</td>
+            <td>(5 × 11 + 8) mod 26 = 63 mod 26 = 11</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>11</td>
+            <td>(5 × 11 + 8) mod 26 = 63 mod 26 = 11</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>O</td>
+            <td>14</td>
+            <td>(5 × 14 + 8) mod 26 = 78 mod 26 = 0</td>
+            <td>A</td>
+        </tr>
+    </table>
+
+    <p style="text-align: center;">
+        <strong>Table 1.</strong> Affine Cipher Encryption Example (Plaintext → Ciphertext)
+    </p>
+
+    <p><strong>Ciphertext:</strong> RCLLA</p>
+
+    <h2>The Decryption Process</h2>
+
+    <p>
+        To decrypt the ciphertext using the Affine cipher, the values <strong>a</strong> and <strong>26</strong> (known
+        as m) must
+        be coprime and equal to 1.
+    </p>
+
+    <ul>
+        <li><strong>Decryption Formula:</strong> <i>D(x) = a<sup>-1</sup>(x - b) mod 26</i>
+            <ol>
+                <li>“X” in the formula resembles the mapped numerical value of the ciphertext character (A = 0, B = 1… Z
+                    = 25).
+                </li>
+                <li>a<sup>-1</sup> in the formula resembles the multiplicative inverse.</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Decryption Example</h3>
+
+    <p><strong>Ciphertext:</strong> RCLLA</p>
+    <p><strong>Keys:</strong> a = 5, b = 8</p>
+    <p><strong>Multiplicative Inverse:</strong> a<sup>-1</sup> = 21 because (5 × 21) mod 26 = 1.</p>
+
+    <table border="1" align="center">
+        <tr>
+            <th>Letter</th>
+            <th>x</th>
+            <th>Calculation</th>
+            <th>Plaintext</th>
+        </tr>
+        <tr>
+            <td>R</td>
+            <td>17</td>
+            <td>21 × (17 - 8) mod 26 = 189 mod 26 = 7</td>
+            <td>H</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>2</td>
+            <td>21 × (2 - 8) mod 26 = -126 mod 26 = 4</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>11</td>
+            <td>21 × (11 - 8) mod 26 = 63 mod 26 = 11</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>11</td>
+            <td>21 × (11 - 8) mod 26 = 63 mod 26 = 11</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>0</td>
+            <td>21 × (0 - 8) mod 26 = -168 mod 26 = 14</td>
+            <td>O</td>
+        </tr>
+    </table>
+
+    <p style="text-align: center;">
+        <strong>Table 2.</strong> Affine Cipher Decryption Example (Ciphertext → Plaintext)
+    </p>
+
+    <p><strong>Recovered Plaintext:</strong> HELLO</p>
+</div>

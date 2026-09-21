@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind The Atbash Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header><h1>Details Behind The Atbash Cipher</h1></header>
+<div class="article-content">
+    <h2>What is the Atbash Cipher?</h2>
+    <p>
+        The Atbash cipher is a simple monoalphabetic substitution cipher, where each letter in the alphabet is mapped to
+        its
+        reverse. For example, the letter “A” would become the letter “Z”, the letter “B” would become the letter “Y”,
+        and vice versa.
+    </p>
+
+    <h2>Encryption Process</h2>
+    <p>
+        The encryption process for the Atbash cipher is quite simple. If you need a visual aid for reference, use this
+        2x26 table below, which has the English alphabet in chronological and reverse order.
+    </p>
+    <table align="center" border="1">
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+            <td>J</td>
+            <td>K</td>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <tr>
+            <td>Z</td>
+            <td>Y</td>
+            <td>X</td>
+            <td>W</td>
+            <td>V</td>
+            <td>U</td>
+            <td>T</td>
+            <td>S</td>
+            <td>R</td>
+            <td>Q</td>
+            <td>P</td>
+            <td>O</td>
+            <td>N</td>
+            <td>M</td>
+            <td>L</td>
+            <td>K</td>
+            <td>J</td>
+            <td>I</td>
+            <td>H</td>
+            <td>G</td>
+            <td>F</td>
+            <td>E</td>
+            <td>D</td>
+            <td>C</td>
+            <td>B</td>
+            <td>A</td>
+        </tr>
+    </table>
+    <p>
+        Now, suppose we want to encrypt the message "SECRET" using the Atbash cipher. Simply find each letter in the
+        top row of the table and replace it with the corresponding letter directly beneath it in the reverse alphabet.
+        For example, "S" becomes "H", "E" becomes "V", and "C" becomes "X". Repeating this process for each
+        letter produces the encrypted message. With this example, The final ciphertext is "HVXIVG"
+    </p>
+    <h2>The Decryption Process</h2>
+    <p>
+        The decryption process follows the same principles, except find each letter at the bottom of the table and
+        replace it with the corresponding letter directly above it in chronological order. Using our ciphertext "HVXIVG"
+        above, "H" becomes "S", "V" becomes "E", and "X" becomes C. Repeating this process for each letter produces the
+        plaintext message. Our plaintext returns as "SECRET".
+    </p>
+</div>
+</body>
+</html>

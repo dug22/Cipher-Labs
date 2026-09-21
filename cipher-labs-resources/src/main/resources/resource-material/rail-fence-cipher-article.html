@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Rail Fence Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Rail Fence Cipher</h1>
+</header>
+<div class="article-content">
+    <h2>What is the Rail Fence Cipher</h2>
+    <p>
+        The rail fence cipher (referred as the zigzag cipher) is a classic transposition cipher. It gets its name based
+        on how encryption is performed, in comparison to a fence
+        built with horizontal rails.
+    </p>
+    <h2>The Encryption Process</h2>
+    <p>
+        With the rail fence cipher, encryption begins by writing the plaintext diagonally downwards across the number of
+        rails, then shifting direction upwards when the bottom rail is reached, and reversing again at the top rail.
+        This zigzag pattern continues until the entire message is written. The ciphertext is then formed by reading each character
+        row by row. For example, we wish to encrypt the word "SECRET" with 3 rails. You would write out the text like this:
+    </p>
+    <code style="font-size: 16px;">
+        S...E.<br>
+        .E.R.T<br>
+        ..C...
+    </code>
+    <p>
+        After reading each character row by row, the final ciphertext is "SEERTC"
+    </p>
+    <h2>The Decryption Process</h2>
+    <p>
+        Decryption reverses the encryption process by reconstructing the zigzag pattern used to create the ciphertext.
+        First, the ciphertext is divided across the rails according to the same zigzag pattern that was used during
+        encryption. The characters are then read diagonally along the rails to reconstruct the original plaintext.
+        For example, if we want to decrypt the ciphertext "SEERTC" using 3 rails, we first arrange the characters
+        across the rails like this:
+    </p>
+    <code style="font-size: 16px;">
+        S...E.<br>
+        .E.R.T<br>
+        ..C...
+    </code>
+    <p>
+        The characters are then read following the original zigzag pattern, starting at the top rail and moving
+        downward before reversing direction at the bottom rail. This reconstructs the original plaintext, which is
+        "SECRET".
+    </p>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Janeczko B. P. (2006). <i>Top Secret A Handbook of Codes, Ciphers and Secret Writing</i>. Candlewick Press.
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

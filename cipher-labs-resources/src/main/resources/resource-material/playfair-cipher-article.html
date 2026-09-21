@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Playfair Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Playfair Cipher</h1>
+</header>
+
+<div class="article-content">
+    <h2>What is the Playfair Cipher?</h2>
+    <p>
+        The Playfair cipher is a classical digraph substitution cipher that was created by Charles Wheatstone in 1854.
+        The cipher was named after its advertiser, Lord Playfair. It's called a digraph substitution cipher due to its
+        nature of encrypting pairs of letters, instead of a single alphabet.
+        The cipher was used during the Boer War, World War I, and World War II.
+    </p>
+
+    <h2>The Encryption Process</h2>
+    <h3>Creating a Key</h3>
+    <p>The key can be composed of random letters or the key can be a short or long word, which uses any 25-letter (I/J
+        are combined) combination that
+        doesn't recur.
+    </p>
+    <h3>5X5 Polybius Square</h3>
+    <p>Next, construct a 5x5 grid, and each square must contain letters of your key first, along with the rest of the
+        alphabet. Note each letter can only be used once, and what I mean by that is, say if your key was "CAB", for the
+        first three squares (by row), you'd write "C", "A", "B", then continue to fill the rest of the squares with
+        letters that weren't used from the alphabet, "D", "E", etc. Remember I/J share one square. The illustration
+        below represents a 5x5 grid using the keyword "CAB".
+    </p>
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "CAB"</caption>
+        <tr>
+            <td>C</td>
+            <td>A</td>
+            <td>B</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p>
+        Note if your keyword contains any double, triple, etc. letters, like if your key was the word "BOOK", "BUBBLE",
+        "POTATOES", etc., you'd only record the letter once, within your grid. Here is a 5x5 grid for each keyword that
+        I mentioned.
+    </p>
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "BOOK"</caption>
+        <tr>
+            <td>B</td>
+            <td>O</td>
+            <td>K</td>
+            <td>A</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+        </tr>
+        <tr>
+            <td>I/J</td>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "BUBBLE"</caption>
+        <tr>
+            <td>B</td>
+            <td>U</td>
+            <td>L</td>
+            <td>E</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>D</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+        </tr>
+        <tr>
+            <td>I/J</td>
+            <td>K</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+        </tr>
+        <tr>
+            <td>P</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "POTATOES"</caption>
+        <tr>
+            <td>P</td>
+            <td>O</td>
+            <td>T</td>
+            <td>A</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>S</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>N</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+
+    <h3>Splitting Your Plain Text into Pairs</h3>
+    <p>
+        The encryption process for Playfair's cipher requires you to divide your message into letter pairs. If any pairs
+        contain the same letter, it is necessary to insert the filler character ‘X’ between the duplicate letters (or
+        ‘Z’ if the duplicate pair is ‘XX’). If your text ends up having an odd length, just insert the filler letter 'X'
+        (or 'Z' to avoid a duplicate pair of 'XX') to make the length even. If your message, for example, was "HELLO
+        WORLD", you'd break the text up like this: "HE
+        LX LO WO RL DX". Here's another example: if your plaintext message was "FOX XRAY", you'd break the text up like
+        this: "FO XZ XR AY". After breaking up your text, you'd use the 5x5 grid to encrypt each letter pair.
+    </p>
+
+    <h3>Encrypting Each Letter Pair Using The 5x5 Grid</h3>
+    <p>
+        Putting this altogether, we wish to encrypt the plain text message "HELLO WORLD", using the keyword "PRINT".
+        First construct a 5x5 grid with the keyword "PRINT".
+    </p>
+
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "PRINT"</caption>
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+
+    <p>
+        Next, split the plaintext message into letter pairs. The plaintext message "HELLO WORLD" becomes
+        "HE LX LO WO RL DX". Each letter pair is encrypted using the grid based on one of three specific rules:
+    </p>
+    <ol>
+        <li><strong>Rule 1:</strong>If both letters of the letter pair share the same column, take the letter
+            beneath it (redirect back to the top if the letter of the letter pair is at the bottom.)
+        </li>
+        <li><strong>Rule 2:</strong>If both letters of the letter pair share the same row, take the most right letter
+            (redirect back to the leftmost if at the rightmost position).
+        </li>
+        <li><strong>Rule 3:</strong>If neither rules 1 nor 2 are applicable, form a rectangle with the two letters
+            within the grid, and use the letter on the horizontal opposite of the rectangle.
+        </li>
+    </ol>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td bgcolor="RED">C</td>
+            <td>D</td>
+            <td bgcolor="LIME">E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td bgcolor="LIME">H</td>
+            <td>K</td>
+            <td bgcolor="RED">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "HE" would become "LC" ("H" becomes "L", and "E" becomes "C"), and
+        rule 3 is applicable here.</p>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td bgcolor="RED">H</td>
+            <td>K</td>
+            <td bgcolor="LIME">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td bgcolor="LIME">X</td>
+            <td>Y</td>
+            <td bgcolor="RED">Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "LX" would become "HZ" ("L" becomes "H", and "X" becomes "Z"), and
+        rule 3 is applicable here.</p>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td bgcolor="RED">G</td>
+            <td>H</td>
+            <td>K</td>
+            <td bgcolor="LIME">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td bgcolor="LIME">O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td bgcolor="RED">U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "LO" would become "GU"("L" becomes "G", and "O" becomes "U"), and
+        rule 3 is applicable here.</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td bgcolor="RED">R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td bgcolor="lime">O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td bgcolor="LIME">W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "WO" would become "RW" ("W" becomes "R", and "O" becomes "W"), and
+        rule 1 is applicable here.</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td bgcolor="LIME">R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td bgcolor="RED">T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td bgcolor="RED">G</td>
+            <td>H</td>
+            <td>K</td>
+            <td bgcolor="LIME">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "RL" would become "TG" ("R" becomes "T", and "L" becomes "G"), and
+        rule 3 is applicable here</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td bgcolor="red">C</td>
+            <td bgcolor="lime">D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td bgcolor="lime">X</td>
+            <td bgcolor="red">Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "DX" would become "CY" ("D" becomes "C", and "X" becomes "Y"), and
+        rule 3 is applicable here.</p>
+    <p>Putting everything together, the ciphertext would result in <strong>"LCHZGURWTGCY".</strong></p>
+    <h2>The Decryption Process</h2>
+    <p>
+        The decryption process for the Playfair cipher follows the same steps, except the grid rules are reversed.
+        In order to decrypt the following ciphertext "LCHZGURWTGCY", we need to first create our grid again.
+    </p>
+    <table border="1" align="CENTER">
+        <caption style="white-space: nowrap;" align="bottom">5X5 Grid for the keyword "PRINT"</caption>
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p>Next, we need to divide our ciphertext into letter pairs. "LCHZGURWTGCY" would result in: "LC HZ GU RW TG CY"
+        Each letter pair is decrypted using the grid based on one of three specific rules:
+    </p>
+    <ol>
+        <li><strong>Rule 1:</strong>If both letters of the letter pair share the same column, take the letter
+            above it (redirect back to the bottom if the letter of the letter pair is at the top.)
+        </li>
+        <li><strong>Rule 2:</strong>If both letters of the letter pair share the same row, take the most left letter
+            (redirect back to the rightmost if at the leftmost position).
+        </li>
+        <li><strong>Rule 3:</strong>If neither rules 1 nor 2 are applicable, form a rectangle with the two letters
+            within the grid, and use the letter on the horizontal opposite of the rectangle.
+        </li>
+    </ol>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td bgcolor="LIME">C</td>
+            <td>D</td>
+            <td bgcolor="RED">E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td bgcolor="RED">H</td>
+            <td>K</td>
+            <td bgcolor="LIME">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "LC" would become "HE" ("L" becomes "H", and "C" becomes "E"), and
+        rule 3 is applicable here.</p>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td bgcolor="LIME">H</td>
+            <td>K</td>
+            <td bgcolor="RED">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td bgcolor="RED">X</td>
+            <td>Y</td>
+            <td bgcolor="LIME">Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "HZ" would become "LX" ("H" becomes "L", and "Z" becomes "X"), and
+        rule 3 is applicable here.</p>
+
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td bgcolor="LIME">G</td>
+            <td>H</td>
+            <td>K</td>
+            <td bgcolor="RED">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td bgcolor="RED">O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td bgcolor="LIME">U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "GU" would become "LO"("G" becomes "L", and "U" becomes "O"), and
+        rule 3 is applicable here.</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td bgcolor="LIME">R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td bgcolor="RED">O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td bgcolor="LIME">W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "RW" would become "WO" ("R" becomes "W", and "W" becomes "O"), and
+        rule 1 is applicable here.</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td bgcolor="RED">R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td bgcolor="LIME">T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td bgcolor="LIME">G</td>
+            <td>H</td>
+            <td>K</td>
+            <td bgcolor="RED">L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "TG" would become "RL" ("T" becomes "R", and "G" becomes "L"), and
+        rule 3 is applicable here</p>
+    <table border="1" align="CENTER">
+        <tr>
+            <td>P</td>
+            <td>R</td>
+            <td>I/J</td>
+            <td>N</td>
+            <td>T</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td bgcolor="lime">C</td>
+            <td bgcolor="red">D</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>K</td>
+            <td>L</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>O</td>
+            <td>Q</td>
+            <td>S</td>
+            <td>U</td>
+        </tr>
+        <tr>
+            <td>V</td>
+            <td>W</td>
+            <td bgcolor="red">X</td>
+            <td bgcolor="lime">Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p style="text-align: CENTER;">The letter pair "CY" would become "DX" ("C" becomes "D", and "Y" becomes "X"), and
+        rule 3 is applicable here.</p>
+    <p>
+        Putting everything together, the plaintext results in <strong>"HELXLOWORLDX"</strong>. Reconstruct the message
+        by removing any filler characters you see. The final message would result in <strong>"HELLOWORLD"</strong>.
+    </p>
+    <h2>Security Implications</h2>
+    <p>
+        The Playfair cipher is a unique cipher on its own, but it is highly vulnerable to hill climbing attacks, and frequency analysis, especially
+        digraph attacks, if there is enough text to go around. Playfair is considered better suited to short messages
+        than to long ones.
+    </p>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em;">
+            Reynard, R. (1997). <i>Secret Code Breaker II A Cryptanalyst's Handbook Volume 2</i>. Smith and Daniel
+            Marketing.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">
+            Stanoyevitch, A. (2011). <i>Introduction to Cryptography with Mathematical Foundations and Computer
+            Implementations</i>. Taylor & Francis.
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Behind the Polybius Cipher</title>
+    <link rel="stylesheet" type="text/css" href="css/resource-styles.css">
+</head>
+<body>
+<header>
+    <h1>Details Behind the Polybius Cipher</h1>
+</header>
+
+<div class="article-content">
+    <h2>What is the Polybius Cipher?</h2>
+    <p>
+        The Polybius cipher is a cipher where each letter of the alphabet (except I and J, which are combined) is
+        written into a 5x5 grid (also known as a Polybius square), in alphabetical order, by row. The encryption
+        principle works by locating the letter's row and column coordinate, turning that letter into numbers. The
+        decryption principle works by locating the letter’s row and column coordinate, turning it back into its original
+        letter. Though there are many variations, where a key is used, and the letters of the key are recorded first,
+        within the Polybius square, or alphabets are just scrambled.
+    </p>
+
+    <h2>The Encryption Process</h2>
+    <p>
+        Start by drawing a 5x5 grid. Next, write the letters A to Z in each square, placing one letter per box. Be sure
+        to combine I and J into a single square.
+    </p>
+    <table align="center">
+        <!-- Column Headers -->
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <!-- Row 4 -->
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+    </table>
+    <p>
+        Now let's say we wish to encrypt the message "LABS" using the Polybius cipher. For each letter, locate its
+        respective row and column coordinate. That returns the
+        respective ciphered characters. Follow the visuals below, to see how the encryption process works.
+    </p>
+    <table align="center">
+
+        <tr>
+            <th></th>
+            <th>
+                <mark style="background-color: gold;">1
+            </th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">3</mark>
+            </th>
+            <td>
+                <mark>L</mark>
+            </td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">Letter "L" Encrypts to "31"</caption>
+    </table>
+
+    <table align="center">
+
+        <tr>
+            <th></th>
+            <th>
+                <mark style="background-color: gold;">1</mark>
+            </th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">1</mark>
+            </th>
+            <td>
+                <mark>A</mark>
+            </td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">Letter "A" Encrypts to "11"</caption>
+    </table>
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>
+                <mark style="background-color: gold;">2</mark>
+            </th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">1</mark>
+            </th>
+            <td>A</td>
+            <td>
+                <mark>B</mark>
+            </td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">Letter "B" Encrypts to "12"</caption>
+    </table>
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>
+                <mark style="background-color: gold;">3</mark>
+            </th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>
+                <mark style="background-color: orange;">4</mark>
+            </th>
+            <td>Q</td>
+            <td>R</td>
+            <td>
+                <mark>S</mark>
+            </td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">Letter "S" Encrypts to "43"</caption>
+    </table>
+    <p>
+        Our ciphertext returns "31111243", after putting everything together. These numbers resemble the row and column
+        coordinate of each letter.
+    </p>
+    <h2>The Decryption Process</h2>
+    <p>
+        The decryption process uses the same steps as the encryption process, except you're translating the coordinates
+        back to their corresponding letter.
+        Let's decrypt the ciphertext "31111243" back to the plaintext "LABS". Follow the visuals below, to see how the
+        decryption process works.
+    </p>
+    <table align="center">
+
+        <tr>
+            <th></th>
+            <th><mark style="background-color: gold;">1</mark></th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">3</mark>
+            </th>
+            <td>
+                <mark>L</mark>
+            </td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">"31" Decrypts to the Letter "L"</caption>
+    </table>
+
+    <table align="center">
+
+        <tr>
+            <th></th>
+            <th>
+                <mark style="background-color: gold;">1</mark>
+            </th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">1</mark>
+            </th>
+            <td>
+                <mark>A</mark>
+            </td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">"11" Decrypts to the Letter "A"</caption>
+    </table>
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>
+                <mark style="background-color: gold;">2</mark>
+            </th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>
+                <mark style="background-color: orange;">1</mark>
+            </th>
+            <td>A</td>
+            <td>
+                <mark>B</mark>
+            </td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">"12" Decrypts to the Letter "B"</caption>
+    </table>
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>
+                <mark style="background-color: gold;">3</mark>
+            </th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I/J</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+        </tr>
+        <tr>
+            <th>
+                <mark style="background-color: orange;">4</mark>
+            </th>
+            <td>Q</td>
+            <td>R</td>
+            <td>
+                <mark>S</mark>
+            </td>
+            <td>T</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">"43" Decrypts to the Letter "S"</caption>
+    </table>
+    <p>
+        Our decrypted or plaintext returns "LABS", after putting the visuals above together.
+    </p>
+    <h2>How to Make The Polybius Cipher Stronger</h2>
+    <p>
+        As noted earlier, there are many versions of the Polybius Cipher. To enhance its security and prevent easy
+        decryption, you can scramble the alphabet or use an optional key at the beginning of the grid. These methods
+        make it much harder for an average user to decipher the ciphertext. This cipher should by no means ever
+        be used in modern applications. Below are two grids, one with a scrambled alphabet, and one with a key.
+    </p>
+
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>F</td>
+            <td>G</td>
+            <td>I/J</td>
+            <td>H</td>
+            <td>K</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>D</td>
+            <td>E</td>
+            <td>B</td>
+            <td>C</td>
+            <td>A</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+            <td>R</td>
+            <td>Q</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>M</td>
+            <td>N</td>
+            <td>P</td>
+            <td>O</td>
+            <td>V</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>W</td>
+            <td>L</td>
+            <td>Y</td>
+            <td>Z</td>
+            <td>X</td>
+        </tr>
+        <caption style="caption-side: bottom;">Polybius Square with a Scrambled Alphabet</caption>
+    </table>
+
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <th>1</th>
+            <td>T</td>
+            <td>E</td>
+            <td>S</td>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <th>2</th>
+            <td>C</td>
+            <td>D</td>
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <th>3</th>
+            <td>I/J</td>
+            <td>K</td>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>O</td>
+            <td>P</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>U</td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <th>5</th>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <caption style="caption-side: bottom;">Polybius Square with the Keyword "TEST"</caption>
+    </table>
+    <p>Worth noting, if your given key contains duplicate letters, they are to be recorded once within the grid.</p>
+    <h2>Sources</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 2em; text-indent: -2em; ">Salomon, D. (2012). <i>Data Privacy and Security</i>. Data Privacy and Security.
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
